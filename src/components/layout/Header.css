@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+    background-color: black!important;
+}
+
+.header-left {
+    display: flex;
+    width: 50%;
+    padding-left: 5%;
+}
+
+.header-right {
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+    padding-right: 5%;
+}
+
+.img-logo {
+    width: 100px;
+}
+

@@ -1,0 +1,46 @@
+.content-login {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.logo-content {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    background-color: black;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-info {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #1A1B24; */
+    height: 100vh;
+}
+
+.title-login {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.btn-success {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.btn-outline-secondary {
+    width: 100%;
+}
+
+.create-account-a {
+    width: 100%;
+}
