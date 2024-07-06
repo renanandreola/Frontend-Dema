@@ -6,8 +6,8 @@
     align-items: center;
     height: 60px;
     border-bottom: 1px solid;
-    margin-bottom: 20px;
     background-color: black!important;
+    position: fixed;
 }
 
 .header-left {

@@ -1,19 +1,9 @@
 body {
     /* font-family: Oswald; */
-    font-family: 'Trebuchet MS';
-    /* color: white; */
+    font-family: -apple-system, 'Abel';
     text-align: center;
-    /* color: #d1d4dc; */
 }
 
-h1, h2, h3 {
-    font-weight: 200;
-}
-
-h2, h3 {
-    margin: 0;
-}
-
-a {
-    color: white!important;
+span {
+    font-family: -apple-system, 'Abel';
 }

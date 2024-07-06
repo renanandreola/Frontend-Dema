@@ -7,6 +7,7 @@ import Register from "../Pages/Register/Register";
 import ProductListing from "../Pages/ProductListing/ProductListing";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import Login from "../Pages/Login/Login";
+import Cart from "../Pages/Cart/Cart";
 
 function RouteComponent() {
   return (
@@ -18,6 +19,7 @@ function RouteComponent() {
         <Route path="/products" element={<ProductListing />} />
         <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
   );

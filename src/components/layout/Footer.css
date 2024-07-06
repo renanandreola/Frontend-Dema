@@ -1,0 +1,15 @@
+.renan {
+    color: #6c757d !important;
+    text-decoration: underline;
+}
+
+.text-center {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 40px;
+    border-top: 1px solid;
+    align-items: center;
+}

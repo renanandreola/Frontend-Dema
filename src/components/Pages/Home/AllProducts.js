@@ -28,27 +28,18 @@ function AllProducts() {
   if (data.length > 0) {
     return (
       <>
-        <h1>Produtos</h1>
 
-        <div className="listing-tickers">
+        <div className="listing-products">
+          <span className="title-page">Linha de produtos</span>
           {data.map((product) => (
-            <Card product={product}></Card>
-            // <tr key={action.code}>
-            //     <th scope="row">-</th>
-            //     <td>{action.code}</td>
-            //     <td>{action.name}</td>
-            //     {/* <td><a href='/'>Ver ativo</a></td> */}
-            //     <td>
-            //         <button className='btn btn-primary' onClick={() => goToAction(action.code, action.name)}>Ver ativo</button>
-            //     </td>
-            // </tr>
+            <Card key={product._id} product={product}></Card>
           ))}
         </div>
       </>
     );
   } else {
     return (
-      <h1>Carregando produtos...</h1>
+      <span>Carregando produtos...</span>
     );
   }
 }

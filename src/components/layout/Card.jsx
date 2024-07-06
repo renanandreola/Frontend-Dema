@@ -1,39 +1,56 @@
 import "./Card.css";
-import React from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../Contexts/CartContext";
 
-export default (props) => {
+function Card (props) {
+  const [inputValue, setInputValue] = useState(0);
   const navigate = useNavigate();
 
-  const goToAction = (code, name) => {
-    navigate("/ticker", { state: { code: code, name: name } });
+  const { addToCart, removeFromCart } = useContext(CartContext);
+
+  const goToProduct = (code, name) => {
+    navigate("/product-details", { state: { code: code, name: name } });
   };
 
-  const cardStyle = {
-    backgroundColor: props.color || "#143a87",
-    borderColor: props.color || "#143a87",
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(value);
   };
 
   return (
-    <div className="Card" style={cardStyle}>
-      <div className="Title">
-        {/* {props.title} */}
-        <span>{props.product._id}</span>
+    <div className="Card">
+      <div className="card-left">
+        <img className="image-product" src={`${process.env.PUBLIC_URL}/hidracouro-500ml.png`} alt="" />
+        {/* <span>{props.product.image}</span> */}
       </div>
-      <div className="Content">
-        {/* {props.children} */}
-        <span>{props.product.name}</span>
-        <span>{props.product.price}</span>
-        <span>{props.product.description}</span>
-      </div>
-      <div className="Content">
-        <button
-          className="btn btn-dark"
-          onClick={() => goToAction(props.code, props.name)}
-        >
-          Ver ativo
-        </button>
+      
+      <div className="card-right">
+        <span className="product-name">{props.product.name}</span>
+        <span className="product-code">Cód. {props.product._id}</span>
+        <span className="product-price">{formatCurrency(props.product.price)}</span>
+
+        <div className="product-actions">
+          <input className="input-qtd" type="number" value={inputValue} onChange={handleChange} />
+          <button className="btn btn-warning" onClick={() => addToCart({
+            id: props.product._id,
+            name: props.product.name,
+            price: props.product.price,
+            qtd: parseInt(inputValue),
+            stock: props.product.stock
+          })}>Comprar</button>
+          {/* <button className="btn btn-danger" onClick={() => removeFromCart(props.product._id)}>Remover</button> */}
+        </div>
       </div>
     </div>
   );
 };
+
+export default Card;

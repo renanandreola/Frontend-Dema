@@ -1,0 +1,13 @@
+.listing-products {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 75px;
+}
+
+.title-page {
+    
+}
