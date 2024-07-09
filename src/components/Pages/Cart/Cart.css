@@ -123,3 +123,34 @@
     border-radius: 0.25rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
+
+.actions-cart {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.padding-jumbotron {
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.width-list-cart {
+    width: 100%;
+}
+
+.cart-resume-title {
+    display: flex;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.align-list-custom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.finish-order-btn {
+    width: 95%;
+    margin-bottom: 60px;
+}

@@ -13,14 +13,39 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (productId) => {
-    console.log('removeFromCart context: ', productId);
     const updatedCart = cartItems.filter(item => item.id !== productId);
     setCartItems(updatedCart);
     sessionStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
+  const removeAllCart = (productId) => {
+    const emptyArray = [];
+    setCartItems(emptyArray);
+    sessionStorage.setItem('cart', JSON.stringify(emptyArray));
+  };
+
+  const getTotalCartPrice = (productId) => {
+    var total = 0;
+
+    cartItems.forEach(product => {
+      total += product.price * product.qtd
+    });
+
+    return total;
+  };
+
+  const getTotalCartUnity = (productId) => {
+    var un = 0;
+
+    cartItems.forEach(product => {
+      un += product.qtd
+    });
+
+    return un + ' unidades';
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, removeAllCart, getTotalCartPrice, getTotalCartUnity }}>
       {children}
     </CartContext.Provider>
   );

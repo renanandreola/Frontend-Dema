@@ -39,7 +39,7 @@ function Card (props) {
 
         <div className="product-actions">
           <input className="input-qtd" type="number" value={inputValue} onChange={handleChange} />
-          <button className="btn btn-warning" onClick={() => addToCart({
+          <button className="btn btn-warning add-cart-custom" onClick={() => addToCart({
             id: props.product._id,
             name: props.product.name,
             price: props.product.price,

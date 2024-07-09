@@ -8,6 +8,7 @@ import ProductListing from "../Pages/ProductListing/ProductListing";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import Login from "../Pages/Login/Login";
 import Cart from "../Pages/Cart/Cart";
+import Checkout from "../Pages/Checkout/Checkout";
 
 function RouteComponent() {
   return (
@@ -20,6 +21,7 @@ function RouteComponent() {
         <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );

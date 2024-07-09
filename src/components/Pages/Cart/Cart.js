@@ -5,7 +5,7 @@ import { CartContext } from "../../Contexts/CartContext";
 
 
 const Cart = () => {
-    const { removeFromCart, cartItems } = useContext(CartContext);
+    const { removeFromCart, cartItems, removeAllCart, getTotalCartPrice, getTotalCartUnity } = useContext(CartContext);
 
     const formatCurrency = (value) => {
         return new Intl.NumberFormat('pt-BR', {
@@ -61,6 +61,40 @@ const Cart = () => {
                         </div>
                     </div>
                 ))}
+
+                <div class="alert alert-warning mt-4" role="alert">
+                    Os itens selecionados estão sujeitos à confirmação de estoque e serão reservados em um momento posterior à conclusão da compra.
+                </div>
+
+                <div className="actions-cart">
+                    <a href="/">
+                        <button type="button" class="btn btn-success">Adionar mais itens</button>
+                    </a>
+
+                    <button type="button" class="btn btn-danger" onClick={() => removeAllCart()}>Excluir carrinho</button>
+                </div>
+
+                <div className="jumbotron padding-jumbotron">
+                    <span className="cart-resume-title">RESUMO DO CARRINHO</span>
+                    <ul class="list-group list-group-flush width-list-cart">
+                        <li class="list-group-item align-list-custom"> 
+                            <span>Total de produtos:</span> 
+                            <span>{getTotalCartUnity()}</span>
+                        </li>
+                        <li class="list-group-item align-list-custom"> 
+                            <span><strong>TOTAL:</strong></span> 
+                            <span><strong>{formatCurrency(getTotalCartPrice())}</strong></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <a href="/checkout">
+                        <button type="button" class="btn btn-warning finish-order-btn">
+                            <strong>Confirmar pedido</strong>
+                        </button>
+                    </a>
+                </div>
             </>
         );
     } else {
