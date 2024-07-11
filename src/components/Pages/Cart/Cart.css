@@ -143,6 +143,7 @@
     display: flex;
     margin-bottom: 20px;
     font-weight: bold;
+    align-items: center;
 }
 
 .align-list-custom {
