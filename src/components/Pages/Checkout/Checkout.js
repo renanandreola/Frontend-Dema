@@ -1,10 +1,14 @@
 import "./Checkout.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import Header from "../../layout/Header";
+import { CartContext } from "../../Contexts/CartContext";
+import { useNavigate } from "react-router-dom";
 
 function Checkout() {
+  const { cartItems, getTotalCartPrice } = useContext(CartContext);
   const [getOnStore, setGetOnStore] = useState(false);
   const [delivery, setDelivery] = useState(false);
+  const navigate = useNavigate();
 
   const showGetOnStore = () => {
     setGetOnStore(true);
@@ -15,11 +19,29 @@ function Checkout() {
     setDelivery(true);
   };
 
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    }).format(value);
+  };  
+
   function finishOrder() {
+    console.log("cartItems: ", cartItems);
+
+    var products = "";
+
+    cartItems.forEach(product => {
+      products += product.name + " (" + product.qtd + " un.), "
+    });
+    
+    var message = "Olá, vim pelo seu site! Gostaria de retirar " + products + "no total de " + formatCurrency(getTotalCartPrice());
     const phoneNumber = '5554999087286';
-    const message = 'Olá, vim pelo seu site! Isso é um teste';
+    // const message = 'Olá, vim pelo seu site! Isso é um teste';
     const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
+
+    navigate("/confirmation");
   }
 
   return (

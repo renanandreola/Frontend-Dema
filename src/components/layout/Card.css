@@ -1,7 +1,8 @@
 .Card {
     border-radius: 10px;
     overflow: hidden;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
+    border: 1px solid #ffc107;
     margin: 10px;
     display: flex;
     width: 90%;

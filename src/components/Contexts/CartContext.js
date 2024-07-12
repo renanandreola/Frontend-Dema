@@ -18,13 +18,13 @@ export const CartProvider = ({ children }) => {
     sessionStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
-  const removeAllCart = (productId) => {
+  const removeAllCart = () => {
     const emptyArray = [];
     setCartItems(emptyArray);
     sessionStorage.setItem('cart', JSON.stringify(emptyArray));
   };
 
-  const getTotalCartPrice = (productId) => {
+  const getTotalCartPrice = () => {
     var total = 0;
 
     cartItems.forEach(product => {
@@ -34,7 +34,7 @@ export const CartProvider = ({ children }) => {
     return total;
   };
 
-  const getTotalCartUnity = (productId) => {
+  const getTotalCartUnity = () => {
     var un = 0;
 
     cartItems.forEach(product => {
