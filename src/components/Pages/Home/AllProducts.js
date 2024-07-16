@@ -39,7 +39,7 @@ function AllProducts() {
     );
   } else {
     return (
-      <span>Carregando produtos...</span>
+      <span className="title-page">Carregando produtos...</span>
     );
   }
 }
