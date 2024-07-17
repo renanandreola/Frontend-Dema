@@ -10,6 +10,7 @@ import Login from "../Pages/Login/Login";
 import Cart from "../Pages/Cart/Cart";
 import Checkout from "../Pages/Checkout/Checkout";
 import Confirmation from "../Pages/Confirmation/Confirmation";
+import Shipping from "../Pages/Shipping/Shipping";
 
 function RouteComponent() {
   return (
@@ -24,6 +25,7 @@ function RouteComponent() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/confirmation" element={<Confirmation />} />
+        <Route path="/shipping" element={<Shipping />} />
       </Routes>
     </BrowserRouter>
   );

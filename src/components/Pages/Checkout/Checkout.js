@@ -4,25 +4,29 @@ import Header from "../../layout/Header";
 import { CartContext } from "../../Contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Message from "../../layout/Message";
 import Modal from "./Modal";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Checkout() {
   const { cartItems, getTotalCartPrice } = useContext(CartContext);
   const [getOnStore, setGetOnStore] = useState(false);
   const [delivery, setDelivery] = useState(false);
 
+  const [addressData, setAddressData] = useState({});
+  const [showAddressData, setShowAddressData] = useState(false);
+
   const [formData, setFormData] = useState({
-    email: "",
-    userName: "",
+    email: ""
   });
 
   const navigate = useNavigate();
 
-  const [showMessageValid, setshowMessageValid] = useState(false);
-  const [showMessageInvalid, setshowMessageInvalid] = useState(false);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const notifyUserNotAccount = () => {
+    toast.warn('Parece que você não tem cadastro em nosso site. Preencha seu endereço para prosseguir.');
+  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -31,26 +35,6 @@ function Checkout() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
-  useEffect(() => {
-    if (showMessageValid) {
-      const timer = setTimeout(() => {
-        setshowMessageValid(false);
-      }, 5000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [showMessageValid]);
-
-  useEffect(() => {
-    if (showMessageInvalid) {
-      const timer = setTimeout(() => {
-        setshowMessageInvalid(false);
-      }, 5000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [showMessageInvalid]);
 
   const showGetOnStore = () => {
     setGetOnStore(true);
@@ -78,11 +62,11 @@ function Checkout() {
 
   const createLogin = async (event) => {
     event.preventDefault();
+    setShowAddressData(false);
 
     try {
       var data = {
-        email: formData.email,
-        userName: formData.userName,
+        email: formData.email
       };
 
       const response = await axios.post(
@@ -91,29 +75,35 @@ function Checkout() {
       );
 
       if (response.data.status === 500) {
-        openModal()
-        // setshowMessageInvalid(true);
+        notifyUserNotAccount();
+        openModal();
       }
 
-      if (response.data.status === 200) {
-        openModal()
-        // setshowMessageValid(true);
+      if (response.data.status === 200 && response.data.client) {
+        setAddressData({
+          address1: response.data.client.address1,
+          address2: response.data.client.address2,
+          address3: response.data.client.address3,
+          city: response.data.client.city,
+          county: response.data.client.county,
+          email: response.data.client.email,
+          name: response.data.client.name,
+          postalCode: response.data.client.postalCode,
+          state: response.data.client.state
+        });
+
+        setShowAddressData(true);
       }
 
       setFormData({
-        email: "",
-        userName: "",
+        email: ""
       });
     } catch (error) {
-      setshowMessageInvalid(true);
-
       setFormData({
-        email: "",
-        userName: "",
+        email: ""
       });
     }
   };
-
 
   function finishOrder() {
     console.log("cartItems: ", cartItems);
@@ -123,24 +113,39 @@ function Checkout() {
     cartItems.forEach(product => {
       products += product.name + " (" + product.qtd + " un.), "
     });
-    
+
     var message = "Olá, vim pelo seu site! Gostaria de retirar " + products + "no total de " + formatCurrency(getTotalCartPrice());
+
     const phoneNumber = '5554999087286';
-    // const message = 'Olá, vim pelo seu site! Isso é um teste';
     const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 
     navigate("/confirmation");
   }
 
+  function finishOrderShipping() {
+    // console.log("cartItems: ", cartItems);
+
+    // var products = "";
+
+    // cartItems.forEach(product => {
+    //   products += product.name + " (" + product.qtd + " un.), "
+    // });
+
+    // var message = "Olá, vim pelo seu site! Gostaria de receber " + products + "no total de " + formatCurrency(getTotalCartPrice()) + " em: " + addressData.address1 + ', ' + addressData.address2 + ', ' + addressData.postalCode + ' - ' + addressData.county + ', ' + addressData.city + ' - ' + addressData.state;
+    
+    // const phoneNumber = '5554999087286';
+    // const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+    // window.open(url, '_blank');
+
+    navigate("/shipping", { state: { userAddress: addressData } });
+
+  }
+
   return (
     <>
       <Header></Header>
-
-      {showMessageValid && <Message valid={true} message={"Bem vindo!"} />}
-      {showMessageInvalid && (
-        <Message valid={false} message={"Login inválido"} />
-      )}
+      <ToastContainer></ToastContainer>
       
       <div className="checkout-content">
         <div className="cart-title" >
@@ -192,15 +197,6 @@ function Checkout() {
 
               <form onSubmit={createLogin}>
                 <div className="">
-                  {/* <input
-                    type="userName"
-                    name="userName"
-                    value={formData.userName}
-                    id="userName"
-                    className="form-control mt-1"
-                    placeholder="Nome"
-                    onChange={handleChange}
-                  /> */}
                   <input
                     type="email"
                     name="email"
@@ -213,13 +209,28 @@ function Checkout() {
                 </div>
         
                 <div className="">
-                  <button type="submit" className="btn btn-success verifyIdentity" onclick="login()">Verificar</button>
+                  <button type="submit" className="btn btn-success verifyIdentity">Verificar</button>
                 </div>
               </form>
             </div>
           )}
 
           {isModalOpen && <Modal closeModal={closeModal} />}
+
+          {showAddressData && addressData &&
+            <div className="address-data">
+              <div className="card">
+                <div className="card-header">
+                  {addressData.name}
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title">{addressData.address1}, n°{addressData.address2}</h5>
+                  <p className="card-text">{addressData.postalCode}, {addressData.county}, {addressData.city} - {addressData.state}, {addressData.address3}</p>
+                  <a className="btn btn-warning btn-user-address" onClick={finishOrderShipping}>Confirmar e continuar</a>
+                </div>
+              </div>
+            </div>
+          }
 
         </div>
 

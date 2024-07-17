@@ -58,3 +58,13 @@
 .verifyIdentity {
     width: 100%;
 }
+
+.address-data {
+    margin-top: 25px;
+    margin-bottom: 60px;
+}
+
+.btn-user-address {
+    width: 100%;
+    font-weight: bold;
+}

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Modal.css';
-import Message from "../../layout/Message";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 function Modal({ closeModal }) {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,28 +20,21 @@ function Modal({ closeModal }) {
     county: ""
   });
 
-  const [showMessageValid, setshowMessageValid] = useState(false);
-  const [showMessageInvalid, setshowMessageInvalid] = useState(false);
+  const notifyIvalidCep = () => {
+    toast.warn('CEP inválido!');
+  };
 
-  useEffect(() => {
-    if (showMessageValid) {
-      const timer = setTimeout(() => {
-        setshowMessageValid(false);
-      }, 5000);
+  const notifyErrorCep = () => {
+    toast.error('Erro ao buscar o CEP.');
+  };
 
-      return () => clearTimeout(timer);
-    }
-  }, [showMessageValid]);
+  const notifyAddressAdded = () => {
+    toast.success('Endereço salvo!');
+  };
 
-  useEffect(() => {
-    if (showMessageInvalid) {
-      const timer = setTimeout(() => {
-        setshowMessageInvalid(false);
-      }, 5000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [showMessageInvalid]);
+  const notifyAddressError = () => {
+    toast.error('Erro ao salvar endereço!');
+  };
 
   const handleChangePostalCode = async (event) => {
     setFormData({
@@ -51,8 +48,9 @@ function Modal({ closeModal }) {
       try {
         const response = await axios.get(`https://viacep.com.br/ws/${newPostalCode}/json/`);
         if (response.data.erro === "true") {
-          setshowMessageValid(false);
-          setshowMessageInvalid(true);
+
+          notifyIvalidCep();
+        
         } else {
           setFormData({
             ...formData,
@@ -63,8 +61,18 @@ function Modal({ closeModal }) {
           });
         }
       } catch (error) {
-        console.error('Erro ao buscar o CEP:', error);
-        alert('Erro ao buscar o CEP');
+        
+        notifyErrorCep();
+
+        setFormData({
+          postalCode: "",
+          address1: "",
+          address2: "",
+          address3: "",
+          city: "",
+          state: "",
+          county: ""
+        });
       }
     }
   };
@@ -97,8 +105,14 @@ function Modal({ closeModal }) {
         data
       );
 
-      console.log("Response: ", response);
-
+      if(response && response.status === 200) {
+        notifyAddressAdded();
+        navigate("/shipping", { state: { userAddress: data } });
+      } else {
+        notifyAddressError();
+      } 
+      
+        
       setFormData({
         name: "",
         email: "",
@@ -110,10 +124,9 @@ function Modal({ closeModal }) {
         state: "",
         county: ""
       });
-
-      setshowMessageValid(true);
-      setshowMessageInvalid(false);
     } catch (error) {
+      notifyAddressError();
+
       setFormData({
         name: "",
         email: "",
@@ -130,17 +143,13 @@ function Modal({ closeModal }) {
 
   return (
     <>
-      { showMessageValid && <Message valid={true} message={"Endereço cadastrado!"}/> }
-      { showMessageInvalid && <Message valid={false} message={"Cep inválido!"}/> }
+      <ToastContainer />
+      
       <div className="modal">
         <div className="modal-content">
           <div className='modal-header-custom'>
             <span className="close" onClick={closeModal}>&times;</span>
           </div>
-          <div class="alert alert-warning" role="alert">
-            Parece que você não tem cadastro em nosso site. Preencha seu endereço para prosseguir.
-          </div>
-
           
           <form onSubmit={sendAddressData}>
                   <div className="">
@@ -228,7 +237,7 @@ function Modal({ closeModal }) {
                   </div>
           
                   <div className="">
-                    <button type="submit" className="btn btn-success verifyIdentity" onclick="sendAddressData()">Salvar endereço</button>
+                    <button type="submit" className="btn btn-success verifyIdentity" onclick="sendAddressData()">Salvar e continuar</button>
                   </div>
                 </form>
         </div>
