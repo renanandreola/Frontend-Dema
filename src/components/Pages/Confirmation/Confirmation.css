@@ -11,3 +11,7 @@
 .jumbotron {
     /* background-color: #ffc107 !important; */
 }
+
+.alert {
+    position: initial;
+}

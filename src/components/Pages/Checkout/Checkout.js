@@ -124,28 +124,12 @@ function Checkout() {
   }
 
   function finishOrderShipping() {
-    // console.log("cartItems: ", cartItems);
-
-    // var products = "";
-
-    // cartItems.forEach(product => {
-    //   products += product.name + " (" + product.qtd + " un.), "
-    // });
-
-    // var message = "Olá, vim pelo seu site! Gostaria de receber " + products + "no total de " + formatCurrency(getTotalCartPrice()) + " em: " + addressData.address1 + ', ' + addressData.address2 + ', ' + addressData.postalCode + ' - ' + addressData.county + ', ' + addressData.city + ' - ' + addressData.state;
-    
-    // const phoneNumber = '5554999087286';
-    // const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-    // window.open(url, '_blank');
-
     navigate("/shipping", { state: { userAddress: addressData } });
-
   }
 
   return (
     <>
       <Header></Header>
-      <ToastContainer></ToastContainer>
       
       <div className="checkout-content">
         <div className="cart-title" >
@@ -195,6 +179,21 @@ function Checkout() {
                 <span className="text-form">Confirme sua identidade para continuar</span>
               </div>
 
+              {showAddressData && addressData &&
+                <div className="address-data">
+                  <div className="card">
+                    <div className="card-header">
+                      {addressData.name}
+                    </div>
+                    <div className="card-body">
+                      <h5 className="card-title">{addressData.address1}, n°{addressData.address2}</h5>
+                      <p className="card-text">{addressData.postalCode}, {addressData.county}, {addressData.city} - {addressData.state}, {addressData.address3}</p>
+                      <a className="btn btn-warning btn-user-address" onClick={finishOrderShipping}>Confirmar e continuar</a>
+                    </div>
+                  </div>
+                </div>
+              }
+
               <form onSubmit={createLogin}>
                 <div className="">
                   <input
@@ -216,21 +215,6 @@ function Checkout() {
           )}
 
           {isModalOpen && <Modal closeModal={closeModal} />}
-
-          {showAddressData && addressData &&
-            <div className="address-data">
-              <div className="card">
-                <div className="card-header">
-                  {addressData.name}
-                </div>
-                <div className="card-body">
-                  <h5 className="card-title">{addressData.address1}, n°{addressData.address2}</h5>
-                  <p className="card-text">{addressData.postalCode}, {addressData.county}, {addressData.city} - {addressData.state}, {addressData.address3}</p>
-                  <a className="btn btn-warning btn-user-address" onClick={finishOrderShipping}>Confirmar e continuar</a>
-                </div>
-              </div>
-            </div>
-          }
 
         </div>
 

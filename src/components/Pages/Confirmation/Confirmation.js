@@ -2,15 +2,28 @@ import "./Confirmation.css";
 import React, { useState, useContext } from "react";
 import Header from "../../layout/Header";
 import { CartContext } from "../../Contexts/CartContext";
+import { useLocation } from "react-router-dom";
 
 function Confirmation() {
     const { getTotalCartPrice, getTotalCartUnity } = useContext(CartContext);
+    const location = useLocation();
 
-        const formatCurrency = (value) => {
+    console.log(location);
+
+    const formatCurrency = (value) => {
+      if (location && location.state && location.state.shippingMethod) {
+        let shipping = parseFloat(location.state.shippingMethod.split('-')[1].split('R$')[1]);
+        
         return new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-        }).format(value);
+          style: 'currency',
+          currency: 'BRL',
+        }).format(value + shipping);
+      } 
+
+      return new Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+      }).format(value);
     };
     
   return (
@@ -26,9 +39,15 @@ function Confirmation() {
               <div className="progress-bar progress-bar-striped bg-warning progress-bar-animated confirmation" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">100%</div>
           </div>
 
-          <div className="alert alert-success mt-4" role="alert">
-            Seu pedido foi enviado com sucesso! Seus produtos já estão em separação. Iremos utilizar seu contato para agendar a retirada de seu pedido!
-          </div>
+          {location && location.state && location.state.shippingMethod ? (
+            <div className="alert alert-success mt-4" role="alert">
+              Seu pedido foi enviado com sucesso! Seus produtos já estão em separação. Iremos utilizar seu contato para demais informações de entrega.
+            </div>
+          ) : (
+            <div className="alert alert-success mt-4" role="alert">
+              Seu pedido foi enviado com sucesso! Seus produtos já estão em separação. Iremos utilizar seu contato para agendar a retirada de seu pedido!
+            </div>
+          )}
 
           <div>
             <img className="img-confirmation" src={`${process.env.PUBLIC_URL}/Dema-logo-2.png`} alt="Logo" />
@@ -41,6 +60,19 @@ function Confirmation() {
                       <span>Total de produtos:</span> 
                       <span>{getTotalCartUnity()}</span>
                   </li>
+
+                  {location && location.state && location.state.shippingMethod ? (
+                    <li className="list-group-item align-list-custom"> 
+                      <span>Entrega:</span> 
+                      <span>{location.state.shippingMethod}</span>
+                    </li>
+                  ) : (
+                    <li className="list-group-item align-list-custom"> 
+                      <span>Retirada:</span> 
+                      <span>R$ 0,00</span>
+                    </li>
+                  )}
+
                   <li className="list-group-item align-list-custom"> 
                       <span><strong>TOTAL:</strong></span> 
                       <span><strong>{formatCurrency(getTotalCartPrice())}</strong></span>
