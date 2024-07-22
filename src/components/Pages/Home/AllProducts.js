@@ -1,12 +1,10 @@
 import "./AllProducts.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Card from "../../layout/Card";
 
 
 function AllProducts() {
-  const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -28,7 +26,6 @@ function AllProducts() {
   if (data.length > 0) {
     return (
       <>
-
         <div className="listing-products">
           <span className="title-page">Linha de produtos</span>
           {data.map((product) => (

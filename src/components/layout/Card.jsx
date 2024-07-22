@@ -8,10 +8,10 @@ function Card (props) {
   const [inputValue, setInputValue] = useState(0);
   const navigate = useNavigate();
 
-  const { addToCart, removeFromCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
 
-  const goToProduct = (code, name) => {
-    navigate("/product-details", { state: { code: code, name: name } });
+  const goToProduct = (id) => {
+    navigate("/product-details", { state: { productId: id } });
   };
 
   const notifyInvalidQtd = () => {
@@ -51,19 +51,19 @@ function Card (props) {
 
       <div className="Card">
         <div className="card-left">
-          <img className="image-product" src={`${process.env.PUBLIC_URL}/hidracouro-500ml.png`} alt="" />
-          {/* <span>{props.product.image}</span> */}
+          <img className="image-product" src={`${props.product.image}`} alt="" />
         </div>
         
         <div className="card-right">
-          <span className="product-name">{props.product.name}</span>
+          <a onClick={() => goToProduct(props.product._id)}>
+            <span className="product-name">{props.product.name}</span>
+          </a>
           <span className="product-code">Cód. {props.product._id}</span>
           <span className="product-price">{formatCurrency(props.product.price)}</span>
 
           <div className="product-actions">
             <input className="input-qtd" type="number" value={inputValue} onChange={handleChange} />
             <button className="btn btn-warning add-cart-custom" onClick={() => handleAddCart(props)}>Comprar</button>
-            {/* <button className="btn btn-danger" onClick={() => removeFromCart(props.product._id)}>Remover</button> */}
           </div>
         </div>
       </div>
