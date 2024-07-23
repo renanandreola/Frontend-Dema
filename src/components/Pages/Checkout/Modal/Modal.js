@@ -123,8 +123,10 @@ function Modal({ closeModal }) {
         county: formData.county
       };
 
+      // "http://localhost:3030/dema/client",
+
       const response = await axios.post(
-        "http://localhost:3030/dema/client",
+        "https://dema-api-d36ba11b74d8.herokuapp.com/dema/client",
         data
       );
 

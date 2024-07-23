@@ -46,8 +46,10 @@ const AddProduct = () => {
     
     console.log(finalObject);
 
+    // "http://localhost:3030/dema/addproduct",
+
     const response = await axios.post(
-      "http://localhost:3030/dema/addproduct",
+      "https://dema-api-d36ba11b74d8.herokuapp.com/dema/addproduct",
       finalObject
     );
   };

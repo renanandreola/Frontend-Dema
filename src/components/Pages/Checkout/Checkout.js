@@ -69,8 +69,10 @@ function Checkout() {
         email: formData.email
       };
 
+      // "http://localhost:3030/dema/login",
+
       const response = await axios.post(
-        "http://localhost:3030/dema/login",
+        "https://dema-api-d36ba11b74d8.herokuapp.com/dema/login",
         data
       );
 

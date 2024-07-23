@@ -22,8 +22,11 @@ function ProductDetails (props) {
       const data = {
         id: location.state.productId
       }
+
+      // "http://localhost:3030/dema/product",
+
       const response = await axios.post(
-        "http://localhost:3030/dema/product",
+        "https://dema-api-d36ba11b74d8.herokuapp.com/dema/product",
         data
       );
 
