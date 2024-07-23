@@ -13,7 +13,7 @@ function AllProducts() {
 
   async function fetchData() {
     try {
-      const response = await axios.get("http://localhost:3030/dema/products");
+      const response = await axios.get("https://dema-api-d36ba11b74d8.herokuapp.com/dema/products");
       setData(response.data.products);
     } catch (error) {
       console.error("Erro:", error);
