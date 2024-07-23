@@ -45,7 +45,7 @@ const Cart = () => {
                         <div className="cart-content">
                             <div className="cart-left">
                                 <div className="img-name">
-                                    <img className="image-product-cart" src={`${process.env.PUBLIC_URL}/hidracouro-500ml.png`} alt="" />
+                                    <img className="image-product-cart" src={`${product.image}`} alt="" />
                                     <span>{product.name}</span>
                                 </div>
         
