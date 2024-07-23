@@ -12,14 +12,15 @@
 }
 
 .image-product {
-    /* width: 100px;
-    object-fit: cover; */
+    max-width: 100%;
+    object-fit: cover;
 }
 
 .card-left {
     display: flex;
     justify-content: center;
-    width: 25%;
+    /* width: 25%; */
+    width: 40%;
 }
 
 .card-right {
@@ -28,13 +29,19 @@
     align-items: flex-start;
     justify-content: space-around;
     padding: 12px;
-    width: 75%;
+    /* width: 75%; */
+    width: 60%;
+}
+
+.ancor-product-name {
+    text-align: start;
 }
 
 .product-name {
     font-weight: bold;
     font-size: 16px;
     color: white;
+    text-align: start;
 }
 
 .product-code {

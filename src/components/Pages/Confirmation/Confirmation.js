@@ -1,14 +1,13 @@
 import "./Confirmation.css";
-import React, { useState, useContext } from "react";
-import Header from "../../layout/Header";
+import React, { useContext } from "react";
+import Header from "../../layout/Header/Header";
+import Footer from "../../layout/Footer/Footer";
 import { CartContext } from "../../Contexts/CartContext";
 import { useLocation } from "react-router-dom";
 
 function Confirmation() {
     const { getTotalCartPrice, getTotalCartUnity } = useContext(CartContext);
     const location = useLocation();
-
-    console.log(location);
 
     const formatCurrency = (value) => {
       if (location && location.state && location.state.shippingMethod) {
@@ -29,7 +28,9 @@ function Confirmation() {
   return (
     <>
       <Header></Header>
+
       <div className="checkout-content">
+
         <div className="cart-title" >
           <span><strong>Agradecemos pela sua compra!</strong></span>
         </div>
@@ -86,9 +87,9 @@ function Confirmation() {
               <button type="button" className="btn btn-warning finish-order-checkout"><strong>Voltar para o início</strong></button>
           </a>
         </div>
-
-
       </div>
+
+      <Footer></Footer>
     </>
   );
 }

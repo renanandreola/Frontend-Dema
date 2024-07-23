@@ -43,8 +43,8 @@ const AddProduct = () => {
       hasPromotion: form.hasPromotion,
       pricePromotion: form.hasPromotion ? Number(form.pricePromotion) : null
     };
+    
     console.log(finalObject);
-    // Aqui você pode fazer algo com o objeto final, como enviá-lo para um servidor
 
     const response = await axios.post(
       "http://localhost:3030/dema/addproduct",

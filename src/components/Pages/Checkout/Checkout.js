@@ -1,11 +1,11 @@
 import "./Checkout.css";
-import React, { useState, useContext, useEffect } from "react";
-import Header from "../../layout/Header";
+import React, { useState, useContext } from "react";
+import Header from "../../layout/Header/Header";
 import { CartContext } from "../../Contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Modal from "./Modal";
-import { ToastContainer, toast } from 'react-toastify';
+import Modal from "./Modal/Modal";
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Checkout() {
@@ -106,8 +106,6 @@ function Checkout() {
   };
 
   function finishOrder() {
-    console.log("cartItems: ", cartItems);
-
     var products = "";
 
     cartItems.forEach(product => {

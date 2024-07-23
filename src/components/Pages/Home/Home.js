@@ -1,14 +1,14 @@
 import React from "react";
-import AllProducts from "./AllProducts";
-import Header from "../../layout/Header";
-import Footer from "../../layout/Footer";
+import AllProducts from "./ProductListing/AllProducts";
+import Header from "../../layout/Header/Header";
+import Footer from "../../layout/Footer/Footer";
 
 function Home() {
   return (
     <div className="Home-general">
       <Header></Header>
       <AllProducts></AllProducts>
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
     </div>
   );
 }

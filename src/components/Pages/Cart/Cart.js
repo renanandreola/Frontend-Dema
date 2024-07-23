@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import Header from "../../layout/Header";
+import Header from "../../layout/Header/Header";
+import Footer from "../../layout/Footer/Footer";
 import "./Cart.css";
 import { CartContext } from "../../Contexts/CartContext";
 
@@ -18,6 +19,7 @@ const Cart = () => {
         return (
             <>
                 <Header></Header>
+
                 <div className="breadcrumb-custom">
                     <a href="/" className="text-breadcrumb">Página inicial</a>
     
@@ -102,12 +104,14 @@ const Cart = () => {
                     </div>
                 </div>
 
+                <Footer></Footer>
             </>
         );
     } else {
         return (
             <>
                 <Header></Header>
+
                 <div className="breadcrumb-custom">
                     <a href="/" className="text-breadcrumb">Página inicial</a>
     
@@ -129,6 +133,7 @@ const Cart = () => {
                     </a>
                 </div>
                
+                <Footer></Footer>
             </>
         );
     }

@@ -1,7 +1,7 @@
 import "./CartIcon.css";
 import React, { useContext } from "react";
 import { FaShoppingCart } from 'react-icons/fa';
-import { CartContext } from "../Contexts/CartContext";
+import { CartContext } from "../../Contexts/CartContext";
 
 const CartIcon = () => {
     const { cartItems } = useContext(CartContext);

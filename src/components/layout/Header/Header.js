@@ -1,6 +1,6 @@
 import "./Header.css";
 import React, { useState } from "react";
-import CartIcon from './CartIcon';
+import CartIcon from '../Cart/CartIcon';
 
 function Header() {
 

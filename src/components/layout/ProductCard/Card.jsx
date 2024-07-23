@@ -1,7 +1,7 @@
 import "./Card.css";
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { CartContext } from "../Contexts/CartContext";
+import { CartContext } from "../../Contexts/CartContext";
 import { ToastContainer, toast } from 'react-toastify';
 
 function Card (props) {
@@ -15,23 +15,34 @@ function Card (props) {
   };
 
   const notifyInvalidQtd = () => {
-    toast.warn('Quantidade inválida!', {
+    toast.error('Quantidade inválida!', {
+      autoClose: 800,
+    });
+  };
+
+  const notifyUnavailableQtd = () => {
+    toast.warn('Quantidade indisponível.', {
       autoClose: 800,
     });
   };
 
   const handleAddCart = (productProps) => {
     if (!inputValue || inputValue === 0 || inputValue === "0") {
-      notifyInvalidQtd();
-    } else {
-      addToCart({
-        id: productProps.product._id,
-        name: productProps.product.name,
-        price: productProps.product.price,
-        qtd: parseInt(inputValue),
-        stock: productProps.product.stock
-      })
+      return notifyInvalidQtd();
+    } 
+    
+    if (inputValue > productProps.product.stock) {
+      return notifyUnavailableQtd();
     }
+    
+    addToCart({
+      id: productProps.product._id,
+      name: productProps.product.name,
+      price: productProps.product.price,
+      qtd: parseInt(inputValue),
+      stock: productProps.product.stock
+    });
+  
   }
 
   const handleChange = (event) => {
@@ -50,14 +61,12 @@ function Card (props) {
       <ToastContainer/>
 
       <div className="Card">
-        <div className="card-left">
+        <div className="card-left" onClick={() => goToProduct(props.product._id)}>
           <img className="image-product" src={`${props.product.image}`} alt="" />
         </div>
         
         <div className="card-right">
-          <a onClick={() => goToProduct(props.product._id)}>
-            <span className="product-name">{props.product.name}</span>
-          </a>
+          <span className="product-name" onClick={() => goToProduct(props.product._id)}>{props.product.name}</span>
           <span className="product-code">Cód. {props.product._id}</span>
           <span className="product-price">{formatCurrency(props.product.price)}</span>
 

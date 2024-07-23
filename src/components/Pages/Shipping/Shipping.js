@@ -1,11 +1,12 @@
 import "./Shipping.css";
-import React, { useState, useContext, useEffect } from "react";
-import Header from "../../layout/Header";
+import React, { useState, useContext } from "react";
+import Header from "../../layout/Header/Header";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { shippingOptions } from "./utils/shipping-options";
 import { CartContext } from "../../Contexts/CartContext";
 import { ToastContainer, toast } from 'react-toastify';
+import Footer from "../../layout/Footer/Footer";
 
 function Shipping() {
     const location = useLocation();
@@ -13,8 +14,6 @@ function Shipping() {
     const { cartItems, getTotalCartPrice } = useContext(CartContext);
 
     const [selectedValue, setSelectedValue] = useState('');
-
-    console.log("location", location);
 
     const formatCurrency = (value) => {
         return new Intl.NumberFormat('pt-BR', {
@@ -24,7 +23,6 @@ function Shipping() {
     };  
 
     const handleSelectChange = (event) => {
-        console.log(event);
         setSelectedValue(event.target.value);
     };
 
@@ -33,8 +31,6 @@ function Shipping() {
     };
 
     function finishShippingOrder() {
-        // console.log("cartItems: ", cartItems);
-
         if (selectedValue && selectedValue !== "") {
             var addressData = location.state.userAddress;
         
@@ -92,6 +88,8 @@ function Shipping() {
 
                 
             </div>
+
+            <Footer></Footer>
         </>
     );
 }
