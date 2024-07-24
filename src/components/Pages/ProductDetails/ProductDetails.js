@@ -86,7 +86,9 @@ function ProductDetails (props) {
       <ToastContainer/>
       <div className="checkout-content">
         {loading ? (
-          <div>Carregando produto...</div>
+          <div className="cart-title" >
+            <span>Carregando produto...</span>
+          </div>
         ) : (
           <div className="m-1">
             <div className="image-content-pdp">
