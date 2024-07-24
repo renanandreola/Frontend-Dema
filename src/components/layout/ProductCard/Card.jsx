@@ -68,7 +68,7 @@ function Card (props) {
         
         <div className="card-right">
           <span className="product-name" onClick={() => goToProduct(props.product._id)}>{props.product.name}</span>
-          <span className="product-code">Cód. {props.product._id}</span>
+          <span className="product-code">Cód. {props.product._id.slice(0, 4)}</span>
           <span className="product-price">{formatCurrency(props.product.price)}</span>
 
           <div className="product-actions">
