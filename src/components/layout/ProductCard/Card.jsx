@@ -40,7 +40,8 @@ function Card (props) {
       name: productProps.product.name,
       price: productProps.product.price,
       qtd: parseInt(inputValue),
-      stock: productProps.product.stock
+      stock: productProps.product.stock,
+      image: productProps.product.image
     });
   
   }
