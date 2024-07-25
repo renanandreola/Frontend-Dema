@@ -92,7 +92,7 @@ function ProductDetails (props) {
         ) : (
           <div className="m-1">
             <div className="image-content-pdp">
-              <img className="image-product-pdp" src={`${productData.image}`} alt="" />
+              <img className="image-product-pdp" src={productData.image} alt="" />
             </div>
             <div className="breadcrumb-custom breadcrumb-pdp">
               <a href="/" className="text-breadcrumb">Página inicial</a>

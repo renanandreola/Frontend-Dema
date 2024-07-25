@@ -63,7 +63,7 @@ function Card (props) {
 
       <div className="Card">
         <div className="card-left" onClick={() => goToProduct(props.product._id)}>
-          <img className="image-product" src={`${props.product.image}`} alt="" />
+          <img className="image-product" src={props.product.image} alt="" />
         </div>
         
         <div className="card-right">
