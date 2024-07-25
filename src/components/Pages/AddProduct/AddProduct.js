@@ -77,7 +77,7 @@ const AddProduct = () => {
       <div>
         <label>
           Image:
-          <input type="file" name="image" onChange={handleChange} required />
+          <input type="text" name="image" onChange={handleChange} required />
         </label>
       </div>
       <div>
