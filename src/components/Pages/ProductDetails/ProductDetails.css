@@ -5,7 +5,8 @@
 }
 
 .image-product-pdp {
-    width: 130px;
+    width: 100%;
+    object-fit: cover;
 }
 
 .breadcrumb-pdp {
