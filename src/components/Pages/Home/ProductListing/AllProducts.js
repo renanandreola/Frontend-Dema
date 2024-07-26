@@ -14,7 +14,6 @@ function AllProducts() {
   async function fetchData() {
     try {
       const response = await axios.get("https://dema-api-d36ba11b74d8.herokuapp.com/dema/products");
-      console.log("response: ", response);
       setData(response.data.products);
     } catch (error) {
       console.error("Erro:", error);
