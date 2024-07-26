@@ -116,7 +116,7 @@ function Checkout() {
 
     var message = "Olá, vim pelo seu site! Gostaria de retirar " + products + "no total de " + formatCurrency(getTotalCartPrice());
 
-    const phoneNumber = '5554999087286';
+    const phoneNumber = '5554999101433';
     const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 

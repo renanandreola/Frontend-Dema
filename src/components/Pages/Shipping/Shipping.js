@@ -42,7 +42,7 @@ function Shipping() {
         
             var message = "Olá, vim pelo seu site! Gostaria de receber " + products + "no total de " + formatCurrency(getTotalCartPrice()) + " em: " + addressData.address1 + ', ' + addressData.address2 + ', ' + addressData.postalCode + ' - ' + addressData.county + ', ' + addressData.city + ' - ' + addressData.state + ". Entrega: " + selectedValue;
             
-            const phoneNumber = '5554999087286';
+            const phoneNumber = '5554999101433';
             const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
 
