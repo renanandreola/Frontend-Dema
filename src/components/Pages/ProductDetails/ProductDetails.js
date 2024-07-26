@@ -65,7 +65,8 @@ function ProductDetails (props) {
       name: productProps.name,
       price: productProps.price,
       qtd: parseInt(inputValue),
-      stock: productProps.stock
+      stock: productProps.stock,
+      image: productProps.image
     });
   }
 
