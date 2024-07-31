@@ -4,9 +4,18 @@
     justify-content: center;
 }
 
-.image-product-pdp {
-    width: 100%;
-    object-fit: cover;
+@media (max-width: 768px) {
+    .image-product-pdp {
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+@media (min-width: 768px) {
+    .image-product-pdp {
+        width: 25%;
+        object-fit: cover;
+    }
 }
 
 .breadcrumb-pdp {

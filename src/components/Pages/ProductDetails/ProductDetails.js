@@ -14,6 +14,8 @@ function ProductDetails (props) {
   const [productData, setProductData] = useState({});
   const [loading, setLoading] = useState(true);
 
+  const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/product' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/product';
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -24,10 +26,7 @@ function ProductDetails (props) {
         id: location.state.productId
       }
 
-      const response = await axios.post(
-        "https://dema-api-d36ba11b74d8.herokuapp.com/dema/product",
-        data
-      );
+      const response = await axios.post(baseURL, data);
 
       if (response && response.data && response.data.status === 200) {
         setProductData(response.data.product);
@@ -110,19 +109,23 @@ function ProductDetails (props) {
               </div>
               <a href="/product-details" className="text-breadcrumb">{productData.name}</a>
             </div>
-            <div className="product-info-pdp">
-              <span className="product-name">{productData.name}</span>
-              <span className="product-code">SKU: {productData._id.slice(0, 4)}</span>
-              <span className="product-price">{formatCurrency(productData.price)}</span>
-              <div className="product-actions">
-                <input className="input-qtd" type="number" value={inputValue} onChange={handleChange} />
-                <button className="btn btn-warning add-cart-custom" onClick={() => handleAddCart(productData)}>Comprar</button>
+
+            <div>
+              <div className="product-info-pdp">
+                <span className="product-name">{productData.name}</span>
+                <span className="product-code">SKU: {productData._id.slice(0, 4)}</span>
+                <span className="product-price">{formatCurrency(productData.price)}</span>
+                <div className="product-actions">
+                  <input className="input-qtd" type="number" value={inputValue} onChange={handleChange} />
+                  <button className="btn btn-warning add-cart-custom" onClick={() => handleAddCart(productData)}>Comprar</button>
+                </div>
+              </div>
+              <div className="product-description-pdp">
+                <span className="title-description">Descrição do produto:</span>
+                <span className="text-description">{productData.description}</span>
               </div>
             </div>
-            <div className="product-description-pdp">
-              <span className="title-description">Descrição do produto:</span>
-              <span className="text-description">{productData.description}</span>
-            </div>
+
           </div>
         )}
       </div>

@@ -7,13 +7,15 @@ function AllProducts() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/products' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
+
   useEffect(() => {
     fetchData();
   }, []);
 
   async function fetchData() {
     try {
-      const response = await axios.get("https://dema-api-d36ba11b74d8.herokuapp.com/dema/products");
+      const response = await axios.get(baseURL);
       setData(response.data.products);
     } catch (error) {
       console.error("Erro:", error);
@@ -34,9 +36,12 @@ function AllProducts() {
     return (
       <div className="listing-products">
         <span className="title-page">Linha de produtos DEMA</span>
-        {data.map((product) => (
-          <Card key={product._id} product={product}></Card>
-        ))}
+
+        <div className="content-cards">
+          {data.map((product) => (
+            <Card key={product._id} product={product}></Card>
+          ))}
+        </div>
       </div>
     );
   } else {

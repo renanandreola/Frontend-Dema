@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 function Modal({ closeModal }) {
   const navigate = useNavigate();
 
+  const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/client' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/client';
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -123,12 +125,7 @@ function Modal({ closeModal }) {
         county: formData.county
       };
 
-      // "http://localhost:3030/dema/client",
-
-      const response = await axios.post(
-        "https://dema-api-d36ba11b74d8.herokuapp.com/dema/client",
-        data
-      );
+      const response = await axios.post(baseURL, data);
 
       if (response && response.status === 200) {
         notifyAddressAdded();
