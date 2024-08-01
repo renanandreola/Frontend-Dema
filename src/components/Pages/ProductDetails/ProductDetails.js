@@ -14,7 +14,8 @@ function ProductDetails (props) {
   const [productData, setProductData] = useState({});
   const [loading, setLoading] = useState(true);
 
-  const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/product' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/product';
+  // const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/product' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/product';
+  const baseURL = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/product';
 
   useEffect(() => {
     fetchData();
