@@ -40,10 +40,10 @@ function LoginAdmin() {
         password: formData.password,
       };
 
-      const response = await axios.post(
-        "http://localhost:3000/dema/loginAdmin",
-        data
-      );
+      // const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/loginAdmin' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/loginAdmin';
+      const baseUrl = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/loginAdmin';
+
+      const response = await axios.post(baseUrl, data);
 
       if (response.data.status === 500) {
         notifyLoginError();
