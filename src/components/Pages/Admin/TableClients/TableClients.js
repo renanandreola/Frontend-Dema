@@ -50,7 +50,7 @@ function TableClients() {
                         <td>{client.state}</td>
                         <td>{client.county}</td>
                         <td>
-                            <button className="btn btn-warning">Editar</button>
+                            {/* <button className="btn btn-warning">Editar</button> */}
                             <button className="btn btn-danger">Excluir</button>
                         </td>
                     </tr>
