@@ -27,10 +27,10 @@ function HomeAdmin() {
     const [clients, setClients] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const baseUrlProducts = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/products' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
-    const baseUrlClients = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/clients' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/clients';
-    //   const baseUrlProducts = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
-    //   const baseUrlClients = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/clients';
+    // const baseUrlProducts = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/products' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
+    // const baseUrlClients = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/clients' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/clients';
+      const baseUrlProducts = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
+      const baseUrlClients = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/clients';
 
     useEffect(() => {
         fetchProductsData();
