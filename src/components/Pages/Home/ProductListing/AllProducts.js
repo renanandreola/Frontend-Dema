@@ -28,7 +28,9 @@ function AllProducts() {
   if (loading) {
     return (
       <div className="listing-products">
-        <span className="title-page">Carregando produtos...</span>
+        <div class="spinner-border text-warning" role="status">
+          <span class="sr-only">Carregando produtos... </span>
+        </div>
       </div>
     );
   }
