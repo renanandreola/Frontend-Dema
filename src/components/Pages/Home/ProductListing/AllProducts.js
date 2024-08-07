@@ -28,8 +28,8 @@ function AllProducts() {
   if (loading) {
     return (
       <div className="listing-products">
-        <div class="spinner-border text-warning" role="status">
-          <span class="sr-only">Carregando produtos... </span>
+        <div className="spinner-border text-warning" role="status">
+          <span className="sr-only">Carregando produtos... </span>
         </div>
       </div>
     );

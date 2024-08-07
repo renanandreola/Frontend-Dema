@@ -20,7 +20,7 @@
   
 .content {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid transparent;
     margin: 0 5% 0px 5%;
     padding: 0;
 }

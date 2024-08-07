@@ -7,7 +7,6 @@ import Cart from "../Pages/Cart/Cart";
 import Checkout from "../Pages/Checkout/Checkout";
 import Confirmation from "../Pages/Confirmation/Confirmation";
 import Shipping from "../Pages/Shipping/Shipping";
-import AddProduct from "../Pages/Admin/AddProduct/AddProduct";
 import LoginAdmin from "../Pages/Admin/LoginAdmin/LoginAdmin";
 import HomeAdmin from "../Pages/Admin/HomeAdmin/HomeAdmin";
 
@@ -21,7 +20,6 @@ function RouteComponent() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/shipping" element={<Shipping />} />
-        <Route path="/addProduct" element={<AddProduct />} />
         <Route path="/loginAdmin" element={<LoginAdmin />} />
         <Route path="/homeAdmin" element={<HomeAdmin />} />
       </Routes>

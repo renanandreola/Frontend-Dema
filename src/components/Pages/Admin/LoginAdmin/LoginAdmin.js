@@ -4,11 +4,9 @@ import Header from "../../../layout/Header/Header";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from 'react-toastify';
-import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function LoginAdmin() {
-  const location = useLocation();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -60,10 +58,6 @@ function LoginAdmin() {
           expires: tenMinutesFromNow,
         });
 
-        const token = Cookies.get("token");
-
-        // console.log("token: ", token);
-
         navigate("/homeAdmin");
       }
 
@@ -94,16 +88,16 @@ function LoginAdmin() {
         <div className="login-info">
             <h2 className="login-title">Acesso administrador</h2>
             <form className="input-fields" onSubmit={createLogin}>
-                <div class="form-group content-field">
+                <div className="form-group content-field">
                     <label for="email">Endereço de e-mail</label>
-                    <div class="input-icon icon-username"></div>
-                    <input class="form-control email-admin" id="email" name="email" placeholder="admin@admin.com" type="email" value={formData.email} onChange={handleChange}/>
+                    <div className="input-icon icon-username"></div>
+                    <input className="form-control email-admin" id="email" name="email" placeholder="admin@admin.com" type="email" value={formData.email} onChange={handleChange}/>
                 </div>
 
-                <div class="form-group content-field">
+                <div className="form-group content-field">
                     <label for="email">Senha</label>
-                    <div class="input-icon icon-password"></div>
-                    <input class="form-control email-admin" type="password" name="password" value={formData.password} id="password" placeholder="Senha" onChange={handleChange}/>
+                    <div className="input-icon icon-password"></div>
+                    <input className="form-control email-admin" type="password" name="password" value={formData.password} id="password" placeholder="Senha" onChange={handleChange}/>
                 </div>
                 <button type="submit" className="btn btn-warning admin-btn">Entrar</button>
             </form>
