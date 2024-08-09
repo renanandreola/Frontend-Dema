@@ -4,3 +4,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.justify-td-custom {
+    display: flex;
+    justify-content: space-evenly;
+}

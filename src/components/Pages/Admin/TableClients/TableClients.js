@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./TableClients.css";
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 function TableClients() {
 
     const [clients, setClients] = useState([]);
 
     // const baseUrlClients = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/clients' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/clients';
+    // const baseUrlRemoveClients = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/removeClient' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/removeClient';
       const baseUrlClients = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/clients';
+      const baseUrlRemoveClients = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/removeClient';
 
     useEffect(() => {
         fetchClientsData();
@@ -19,6 +22,36 @@ function TableClients() {
             setClients(response.data.products);
         } catch (error) {
             console.error("Erro:", error);
+        }
+    }
+
+    const notifySuccessClient = () => {
+        toast.success('Produto excluído com sucesso');
+    };
+
+    const notifyeErrorClient = () => {
+        toast.error('Erro ao excluir produto');
+    };
+
+    const removeClient = async (id) => {
+        try {
+            var data = {
+                id: id,
+            };
+
+            const responseRemove = await axios.post(baseUrlRemoveClients, data);
+
+            if (responseRemove.data.status === 200) {
+                notifySuccessClient();
+            } else {
+                notifyeErrorClient();
+            }
+
+            window.location.pathname = "/homeAdmin";
+            
+        } catch (error) {
+            console.error("Erro:", error);
+            notifyeErrorClient();
         }
     }
 
@@ -50,8 +83,7 @@ function TableClients() {
                         <td>{client.state}</td>
                         <td>{client.county}</td>
                         <td>
-                            {/* <button className="btn btn-warning">Editar</button> */}
-                            <button className="btn btn-danger">Excluir</button>
+                            <button className="btn btn-danger" onClick={() => removeClient(client._id)}>Excluir</button>
                         </td>
                     </tr>
                 ))}

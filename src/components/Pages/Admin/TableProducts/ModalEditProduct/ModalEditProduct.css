@@ -1,0 +1,51 @@
+.card-form-modal {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 30%;
+}
+
+.form-custom-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content-form-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.content-form-checkbox-modal {
+    display: flex;
+    margin-top: 10px;
+}
+
+.span-label-modal {
+    /* color: white; */
+}
+
+.input-add-products-modal {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid;
+}
+
+.input-add-products-checkbox-modal {
+    margin-left: 10px;
+}
+
+.textarea-custom-modal {
+    display: flex;
+    width: 100%;
+    min-height: 40px;
+    height: 80px;
+    border-radius: 8px;
+    border: 1px solid;  
+}

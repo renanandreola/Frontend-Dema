@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./HomeAdmin.css";
 import Header from "../../../layout/Header/Header";
 import Cookies from "js-cookie";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import AddProduct from "../AddProduct/AddProduct";
 import TableProducts from "../TableProducts/TableProducts";
 import TableClients from "../TableClients/TableClients";

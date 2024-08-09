@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import "./TableProducts.css";
 import axios from "axios";
 import { toast } from 'react-toastify';
+import ModalEditProduct from "./ModalEditProduct/ModalEditProduct";
 
 function TableProducts() {
     const [data, setData] = useState([]);
+    const [modalEdit, setModalEdit] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
     // const baseUrlProducts = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/products' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
     // const baseUrlRemoveProducts = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/removeProduct' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/removeProduct';
-      const baseUrlProducts = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
-      const baseUrlRemoveProducts = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/removeProduct';
+    const baseUrlProducts = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
+    const baseUrlRemoveProducts = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/removeProduct';
 
     useEffect(() => {
         fetchProductsData();
@@ -54,37 +57,58 @@ function TableProducts() {
         }
     }
 
+    const openModalEdit = (product) => {
+        setSelectedProduct(product);
+        setModalEdit(true);
+    }
+
+    const closeModalEdit = () => {
+        setModalEdit(false);
+        setSelectedProduct(null);
+    }
+
     if (data && data.length > 0) {
         return (
-            <table className="table table-striped table-products">
-                <thead>
-                    <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Preço</th>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Imagem</th>
-                    <th scope="col">Estoque</th>
-                    <th scope="col">Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((product) => (
-                        <tr key={product._id}>
-                            <th scope="row">{product.name}</th>
-                            <td>{product.price}</td>
-                            <td className="description-text">{product.description}</td>
-                            <td className="description-text">{product.image}</td>
-                            <td>{product.stock}</td>
-                            <td>
-                                <button className="btn btn-warning">Editar</button>
-                                <button className="btn btn-danger" onClick={() => removeProduct(product._id)}>Excluir</button>
-                            </td>
+            <>
+                <table className="table table-striped table-products">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Preço</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Imagem</th>
+                            <th scope="col">Estoque</th>
+                            <th scope="col">Ação</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {data.map((product) => (
+                            <tr key={product._id}>
+                                <th scope="row">{product.name}</th>
+                                <td>{product.price}</td>
+                                <td className="description-text">{product.description}</td>
+                                <td className="description-text">{product.image}</td>
+                                <td>{product.stock}</td>
+                                <td className="justify-td-custom">
+                                    <button className="btn btn-warning" onClick={() => openModalEdit(product)}>Editar</button>
+                                    <button className="btn btn-danger" onClick={() => removeProduct(product._id)}>Excluir</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                
+                {modalEdit && 
+                    <ModalEditProduct 
+                        product={selectedProduct} 
+                        closeModal={closeModalEdit} 
+                    />
+                }
+            </>
         );
     }
+
+    return <p>Nenhum produto encontrado.</p>;
 }
 
 export default TableProducts;
