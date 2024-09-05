@@ -37,10 +37,10 @@ function Shipping() {
             var products = "";
         
             cartItems.forEach(product => {
-              products += product.name + " (" + product.qtd + " un.), "
+              products += product.name + " (" + product.qtd + " un.), \n"
             });
         
-            var message = "Olá, vim pelo seu site! Gostaria de receber " + products + "no total de " + formatCurrency(getTotalCartPrice()) + " em: " + addressData.address1 + ', ' + addressData.address2 + ', ' + addressData.postalCode + ' - ' + addressData.county + ', ' + addressData.city + ' - ' + addressData.state + ". Entrega: " + selectedValue;
+            var message = "Olá, vim pelo seu site! Gostaria de receber: \n" + products + "no total de " + formatCurrency(getTotalCartPrice()) + " em: \n" + addressData.address1 + ', ' + addressData.address2 + ', ' + addressData.postalCode + ' - ' + addressData.county + ', ' + addressData.city + ' - ' + addressData.state + ". \n Entrega: " + selectedValue;
             
             const phoneNumber = '5554999101433';
             const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;

@@ -109,10 +109,10 @@ function Checkout() {
     var products = "";
 
     cartItems.forEach(product => {
-      products += product.name + " (" + product.qtd + " un.), "
+      products += product.name + " (" + product.qtd + " un.), \n"
     });
 
-    var message = "Olá, vim pelo seu site! Gostaria de retirar " + products + "no total de " + formatCurrency(getTotalCartPrice());
+    var message = "Olá, vim pelo seu site! Gostaria de retirar: \n" + products + "no total de " + formatCurrency(getTotalCartPrice());
 
     const phoneNumber = '5554999101433';
     const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
