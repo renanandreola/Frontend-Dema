@@ -15,8 +15,13 @@ const ModalEditProduct = ({ product, closeModal }) => {
         pricePromotion: product.pricePromotion
     });
 
-    // const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/editproduct' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/editproduct';
-    const baseURL = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/editproduct';
+    var baseURL = '';
+  
+    if (window.location.hostname.includes('localhost') || window.location.hostname === 'localhost') {
+      baseURL = 'http://localhost:3000/dema/editproduct';
+    } else {
+      baseURL = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/editproduct';
+    }
 
     const handleChange = (e) => {
         const { name, value, type, checked, files } = e.target;

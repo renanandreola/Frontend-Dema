@@ -20,8 +20,13 @@ function Checkout() {
     email: ""
   });
 
-  // const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/login' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/login';
-  const baseURL = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/login';
+  var baseURL = '';
+  
+  if (window.location.hostname.includes('localhost') || window.location.hostname === 'localhost') {
+    baseURL = 'http://localhost:3000/dema/login';
+  } else {
+    baseURL = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/login';
+  }
 
   const navigate = useNavigate();
 

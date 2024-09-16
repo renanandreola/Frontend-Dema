@@ -34,4 +34,5 @@
     width: 50px;
     height: auto;
     z-index: 1000;
+    cursor: pointer;
 }

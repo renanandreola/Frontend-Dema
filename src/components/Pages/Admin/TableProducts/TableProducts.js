@@ -9,10 +9,16 @@ function TableProducts() {
     const [modalEdit, setModalEdit] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
 
-    // const baseUrlProducts = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/products' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
-    // const baseUrlRemoveProducts = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/removeProduct' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/removeProduct';
-    const baseUrlProducts = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
-    const baseUrlRemoveProducts = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/removeProduct';
+    var baseUrlProducts = '';
+    var baseUrlRemoveProducts = '';
+  
+    if (window.location.hostname.includes('localhost') || window.location.hostname === 'localhost') {
+        baseUrlProducts = 'http://localhost:3000/dema/products';
+        baseUrlRemoveProducts = 'http://localhost:3000/dema/removeProduct';
+    } else {
+        baseUrlProducts = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
+        baseUrlRemoveProducts = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/removeProduct';
+    }
 
     useEffect(() => {
         fetchProductsData();

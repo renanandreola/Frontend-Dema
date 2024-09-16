@@ -6,9 +6,14 @@ import Card from "../../../layout/ProductCard/Card";
 function AllProducts() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  
+  var baseURL = '';
 
-  // const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/products' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
-  const baseURL = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
+  if (window.location.hostname.includes('localhost') || window.location.hostname === 'localhost') {
+    baseURL = 'http://localhost:3000/dema/products';
+  } else {
+    baseURL = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
+  }
 
   useEffect(() => {
     fetchData();
@@ -17,7 +22,7 @@ function AllProducts() {
   async function fetchData() {
     try {
       const response = await axios.get(baseURL);
-      setData(response.data.products);
+      setData(response.data.products.reverse());
     } catch (error) {
       console.error("Erro:", error);
     } finally {

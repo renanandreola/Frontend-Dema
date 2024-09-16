@@ -7,10 +7,16 @@ function TableClients() {
 
     const [clients, setClients] = useState([]);
 
-    // const baseUrlClients = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/clients' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/clients';
-    // const baseUrlRemoveClients = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/removeClient' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/removeClient';
-      const baseUrlClients = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/clients';
-      const baseUrlRemoveClients = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/removeClient';
+    var baseUrlClients = '';
+    var baseUrlRemoveClients = '';
+  
+    if (window.location.hostname.includes('localhost') || window.location.hostname === 'localhost') {
+        baseUrlClients = 'http://localhost:3000/dema/clients';
+        baseUrlRemoveClients = 'http://localhost:3000/dema/removeClient';
+    } else {
+      baseUrlClients = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/clients';
+      baseUrlRemoveClients = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/removeClient';
+    }
 
     useEffect(() => {
         fetchClientsData();

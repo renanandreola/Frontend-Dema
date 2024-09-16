@@ -2,6 +2,10 @@
     color: white;
 }
 
+.cart-icon:hover {
+    color: #ffc107;
+}
+
 .cart-number {
     position: absolute;
     top: -5px;

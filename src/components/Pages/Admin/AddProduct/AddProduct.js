@@ -14,8 +14,13 @@ const AddProduct = () => {
     pricePromotion: ''
   });
 
-  // const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/dema/addproduct' : 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/addproduct';
-  const baseURL = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/addproduct';
+  var baseURL = '';
+  
+  if (window.location.hostname.includes('localhost') || window.location.hostname === 'localhost') {
+    baseURL = 'http://localhost:3000/dema/addproduct';
+  } else {
+    baseURL = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/addproduct';
+  }
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
