@@ -33,7 +33,7 @@ function Confirmation() {
         <div className="checkout-content">
 
           <div className="cart-title" >
-            <span><strong>Agradecemos pela sua compra!</strong></span>
+            <span><strong>AGRADECEMOS PELA SUA COMPRA!</strong></span>
           </div>
 
           <div className="m-1">

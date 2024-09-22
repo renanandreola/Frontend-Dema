@@ -60,7 +60,7 @@ function Shipping() {
             <div className="content-cart-desk">
                 <div className="checkout-content">
                     <div className="cart-title" >
-                        <span>Selecione a entrega</span>
+                        <span>SELECIONE A ENTREGA</span>
                     </div>
 
                     <div className="m-1">
