@@ -4,7 +4,6 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 
 function TableClients() {
-
     const [clients, setClients] = useState([]);
 
     var baseUrlClients = '';

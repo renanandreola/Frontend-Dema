@@ -6,3 +6,21 @@
     width: 100%;
     font-weight: bold;
 }
+
+.finish-order-content-desk {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.select-group-desk {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.finish-btn-desk {
+    display: flex;
+    width: 40%;
+}

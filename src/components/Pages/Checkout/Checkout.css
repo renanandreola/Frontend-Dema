@@ -12,6 +12,16 @@
     .adjust-jumbotron {
         width: 100%;
     }
+
+    .finish-order-checkout {
+        width: 100%;
+        margin-bottom: 60px;
+    }
+
+    .address-data {
+        margin-top: 25px;
+        margin-bottom: 60px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -26,8 +36,47 @@
     }
 
     .adjust-jumbotron {
-        width: 50%;
+        width: 40%;
     }
+
+    .finish-order-checkout {
+        width: 40%;
+        margin-bottom: 60px;
+    }
+
+    .address-data {
+        display: flex;
+        width: 40%;
+        margin-top: 25px;
+        margin-bottom: 60px;
+    }
+}
+
+.content-finish-checkout-desk {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-delivery-desk {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-delivery-desk {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.card-checkout-desk {
+    width: 100%;
+}
+
+.alert-custom-checkout-desk {
+    width: 40%;
 }
 
 .checkout-options {
@@ -73,12 +122,6 @@
     color: white;
 }
 
-.finish-order-checkout {
-    width: 100%;
-    margin-bottom: 60px;
-    /* margin-top: 20px; */
-}
-
 .text-form {
     color: white;
 }
@@ -87,12 +130,8 @@
     width: 100%;
 }
 
-.address-data {
-    margin-top: 25px;
-    margin-bottom: 60px;
-}
-
 .btn-user-address {
     width: 100%;
     font-weight: bold;
+    cursor: pointer;
 }

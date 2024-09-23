@@ -1,5 +1,5 @@
 import "./Checkout.css";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Header from "../../layout/Header/Header";
 import { CartContext } from "../../Contexts/CartContext";
 import { useNavigate } from "react-router-dom";
@@ -12,13 +12,23 @@ function Checkout() {
   const { cartItems, getTotalCartPrice } = useContext(CartContext);
   const [getOnStore, setGetOnStore] = useState(false);
   const [delivery, setDelivery] = useState(false);
-
   const [addressData, setAddressData] = useState({});
   const [showAddressData, setShowAddressData] = useState(false);
-
   const [formData, setFormData] = useState({
     email: ""
   });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   var baseURL = '';
   
@@ -56,8 +66,8 @@ function Checkout() {
 
   const formatCurrency = (value) => {
     return new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
+      style: 'currency',
+      currency: 'BRL',
     }).format(value);
   };  
 
@@ -167,60 +177,126 @@ function Checkout() {
             </div>
 
             {getOnStore && (
-              <>
-                <hr className="hr-custom"></hr>
-                <span className="text-address-selected">Você selecionou <strong>Retirada em loja</strong></span>
-                <iframe className="iframe-custom" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d262.7039098341386!2d-52.27858315248888!3d-27.639737628988467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e3158cf9b8152b%3A0x4ad2f7692d4b3148!2sDemarco%20Hookah!5e0!3m2!1spt-BR!2sbr!4v1720672023292!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                
-                <span className="address-dema">R. Alm. Barroso - Centro, Erechim - RS, 99700-122</span>
+              isMobile ? (
+                <>
+                  <hr className="hr-custom"></hr>
 
-                <div className="alert alert-primary mt-4" role="alert">
-                  Ao finalizar seu pedido, você será redirecionado para o contato de nossa loja, podendo assim agendar sua retirada.
-                </div>
-                <hr></hr>
-                <button type="button" className="btn btn-success finish-order-checkout" onClick={finishOrder}><strong>Finalizar pedido</strong></button>
-              </>
+                  <span className="text-address-selected">Você selecionou <strong>Retirada em loja</strong></span>
+                  <iframe className="iframe-custom" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d262.7039098341386!2d-52.27858315248888!3d-27.639737628988467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e3158cf9b8152b%3A0x4ad2f7692d4b3148!2sDemarco%20Hookah!5e0!3m2!1spt-BR!2sbr!4v1720672023292!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  
+                  <span className="address-dema">R. Alm. Barroso - Centro, Erechim - RS, 99700-122</span>
+
+                  <div className="alert alert-primary mt-4" role="alert">
+                    Ao finalizar seu pedido, você será redirecionado para o contato de nossa loja, podendo assim agendar sua retirada.
+                  </div>
+
+                  <hr></hr>
+
+                  <button type="button" className="btn btn-success finish-order-checkout" onClick={finishOrder}><strong>Finalizar pedido</strong></button>
+                </>
+              ) : (
+                <>
+                  <hr className="hr-custom"></hr>
+
+                  <span className="text-address-selected">Você selecionou <strong>Retirada em loja</strong></span>
+                  <iframe className="iframe-custom" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d262.7039098341386!2d-52.27858315248888!3d-27.639737628988467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e3158cf9b8152b%3A0x4ad2f7692d4b3148!2sDemarco%20Hookah!5e0!3m2!1spt-BR!2sbr!4v1720672023292!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  
+                  <span className="address-dema">R. Alm. Barroso - Centro, Erechim - RS, 99700-122</span>
+
+                  <div className="content-finish-checkout-desk">
+                    <div className="alert alert-primary mt-4 alert-custom-checkout-desk" role="alert">
+                      Ao finalizar seu pedido, você será redirecionado para o contato de nossa loja, podendo assim agendar sua retirada.
+                    </div>
+                    
+                    <hr></hr>
+
+                    <button type="button" className="btn btn-success finish-order-checkout" onClick={finishOrder}><strong>Finalizar pedido</strong></button>
+                  </div>
+                </>
+              )
             )}
 
             {delivery && (
-              <div>
-                <div>
-                  <span className="text-form">Confirme sua identidade para continuar</span>
-                </div>
 
-                {showAddressData && addressData &&
-                  <div className="address-data">
-                    <div className="card">
-                      <div className="card-header">
-                        {addressData.name}
-                      </div>
-                      <div className="card-body">
-                        <h5 className="card-title">{addressData.address1}, n°{addressData.address2}</h5>
-                        <p className="card-text">{addressData.postalCode}, {addressData.county}, {addressData.city} - {addressData.state}, {addressData.address3}</p>
-                        <a className="btn btn-warning btn-user-address" onClick={finishOrderShipping}>Confirmar e continuar</a>
+              isMobile ? (
+                <div>
+                  <div>
+                    <span className="text-form">Confirme sua identidade para continuar</span>
+                  </div>
+
+                  {showAddressData && addressData &&
+                    <div className="address-data">
+                      <div className="card">
+                        <div className="card-header">
+                          {addressData.name}
+                        </div>
+                        <div className="card-body">
+                          <h5 className="card-title">{addressData.address1}, n°{addressData.address2}</h5>
+                          <p className="card-text">{addressData.postalCode}, {addressData.county}, {addressData.city} - {addressData.state}, {addressData.address3}</p>
+                          <a className="btn btn-warning btn-user-address" onClick={finishOrderShipping}>Confirmar e continuar</a>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                }
+                  }
 
-                <form onSubmit={createLogin}>
-                  <div className="">
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      id="email"
-                      className="form-control mb-2 mt-1"
-                      placeholder="E-mail"
-                      onChange={handleChange}
-                    />
+                  <form onSubmit={createLogin}>
+                    <div className="">
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        id="email"
+                        className="form-control mb-2 mt-1"
+                        placeholder="E-mail"
+                        onChange={handleChange}
+                      />
+                    </div>
+            
+                    <div className="">
+                      <button type="submit" className="btn btn-success verifyIdentity">Verificar</button>
+                    </div>
+                  </form>
+                </div>
+              ) : (
+                <div className="content-delivery-desk">
+                  <div>
+                    <span className="text-form">Confirme sua identidade para continuar</span>
                   </div>
-          
-                  <div className="">
-                    <button type="submit" className="btn btn-success verifyIdentity">Verificar</button>
-                  </div>
-                </form>
-              </div>
+
+                  {showAddressData && addressData &&
+                    <div className="address-data">
+                      <div className="card card-checkout-desk">
+                        <div className="card-header">
+                          {addressData.name}
+                        </div>
+                        <div className="card-body">
+                          <h5 className="card-title">{addressData.address1}, n°{addressData.address2}</h5>
+                          <p className="card-text">{addressData.postalCode}, {addressData.county}, {addressData.city} - {addressData.state}, {addressData.address3}</p>
+                          <a className="btn btn-warning btn-user-address" onClick={finishOrderShipping}>Confirmar e continuar</a>
+                        </div>
+                      </div>
+                    </div>
+                  }
+
+                  <form className="form-delivery-desk" onSubmit={createLogin}>
+                    <div className="">
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        id="email"
+                        className="form-control mb-2 mt-1"
+                        placeholder="E-mail"
+                        onChange={handleChange}
+                      />
+                    </div>
+            
+                    <div className="">
+                      <button type="submit" className="btn btn-success verifyIdentity">Verificar</button>
+                    </div>
+                  </form>
+                </div>
+              )
             )}
 
             {isModalOpen && <Modal closeModal={closeModal} />}

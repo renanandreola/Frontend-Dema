@@ -39,6 +39,11 @@
         width: 70px;
         height: 20px;
     }
+
+    .finish-order-btn {
+        width: 100%;
+        margin-bottom: 60px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -86,6 +91,11 @@
         font-weight: 600;
         width: 100px;
         height: 30px;
+    }
+
+    .finish-order-btn {
+        width: 40%;
+        margin-bottom: 60px;
     }
 }
 
@@ -234,9 +244,4 @@
 .align-list-custom {
     display: flex;
     justify-content: space-between;
-}
-
-.finish-order-btn {
-    width: 100%;
-    margin-bottom: 60px;
 }

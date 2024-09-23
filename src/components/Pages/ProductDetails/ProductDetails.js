@@ -13,7 +13,6 @@ function ProductDetails (props) {
   const { addToCart } = useContext(CartContext);
   const [productData, setProductData] = useState({});
   const [loading, setLoading] = useState(true);
-
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {

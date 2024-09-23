@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 function LoginAdmin() {
   const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
