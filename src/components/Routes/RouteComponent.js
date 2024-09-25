@@ -9,6 +9,7 @@ import Confirmation from "../Pages/Confirmation/Confirmation";
 import Shipping from "../Pages/Shipping/Shipping";
 import LoginAdmin from "../Pages/Admin/LoginAdmin/LoginAdmin";
 import HomeAdmin from "../Pages/Admin/HomeAdmin/HomeAdmin";
+import SearchResults from "../Pages/SearchResults/SearchResults";
 
 function RouteComponent() {
   return (
@@ -22,6 +23,7 @@ function RouteComponent() {
         <Route path="/shipping" element={<Shipping />} />
         <Route path="/loginAdmin" element={<LoginAdmin />} />
         <Route path="/homeAdmin" element={<HomeAdmin />} />
+        <Route path="/searchResults" element={<SearchResults />} />
       </Routes>
     </BrowserRouter>
   );
