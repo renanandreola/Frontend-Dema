@@ -88,7 +88,23 @@ function ProductDetails (props) {
   }
 
   const handleChange = (event) => {
-    setInputValue(event.target.value);
+    if(event.target.value < 0) {
+      setInputValue(0);
+    } else {
+      setInputValue(event.target.value);
+    }
+  };
+
+  const handleChangeMore = () => {
+    setInputValue(inputValue + 1);
+  };
+
+  const handleChangeLess = () => {
+    if (inputValue === 0 || inputValue < 0) {
+      setInputValue(0);
+    } else {
+      setInputValue(inputValue - 1);
+    }
   };
 
   const formatCurrency = (value) => {
@@ -138,7 +154,11 @@ function ProductDetails (props) {
                 <span className="product-code">SKU: {productData._id.slice(0, 4)}</span>
                 <span className="product-price">{formatCurrency(productData.price)}</span>
                 <div className="product-actions">
-                  <input className="input-qtd" type="number" value={inputValue} onChange={handleChange} />
+                  <div className="content-controls">
+                    <button className="button-qtd" onClick={handleChangeLess}>-</button>
+                    <input className="input-qtd" type="number" value={inputValue} onChange={handleChange} />
+                    <button className="button-qtd" onClick={handleChangeMore}>+</button>
+                  </div>
                   <button className="btn btn-warning add-cart-custom-pdp" onClick={() => handleAddCart(productData)}>Comprar</button>
                 </div>
               </div>
@@ -179,7 +199,11 @@ function ProductDetails (props) {
                     <span className="product-code">SKU: {productData._id.slice(0, 4)}</span>
                     <span className="product-price">{formatCurrency(productData.price)}</span>
                     <div className="product-actions">
-                      <input className="input-qtd-pdp" type="number" value={inputValue} onChange={handleChange} />
+                      <div className="content-controls">
+                        <button className="button-qtd" onClick={handleChangeLess}>-</button>
+                        <input className="input-qtd" type="number" value={inputValue} onChange={handleChange} />
+                        <button className="button-qtd" onClick={handleChangeMore}>+</button>
+                      </div>
                       <button className="btn btn-warning add-cart-custom-pdp" onClick={() => handleAddCart(productData)}>Comprar</button>
                     </div>
                   </div>

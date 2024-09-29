@@ -27,6 +27,8 @@
 
     .image-product-cart {
         width: 70px;
+        height: 70px;
+        object-fit: cover;
     }
 
     .remove-cart-product {
@@ -80,6 +82,8 @@
 
     .image-product-cart {
         width: 105px;
+        height: 105px;
+        object-fit: cover;
     }
 
     .remove-cart-product {

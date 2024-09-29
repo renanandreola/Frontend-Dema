@@ -91,5 +91,20 @@
 .add-cart-custom {
     height: 30px;
     padding: 0;
-    width: 46%;
+    width: 35%;
+}
+
+.content-controls {
+    display: flex;
+    width: 65%;
+}
+
+.button-qtd {
+    border: 1px solid;
+    border-radius: 6px;
+    width: 20%;
+    height: 30px;
+    text-align: center;
+    margin: 0 2px 0 2px;
+    font-weight: bold;
 }

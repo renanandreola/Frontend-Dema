@@ -68,8 +68,12 @@ function SearchResults() {
     );
   } else {
     return (
-      <div className="listing-products">
-        <span className="title-page">Nenhum resultado encontrado para "{location.state.searchTerm}"</span>
+      <div className="">
+        <Header></Header>
+        <div className="listing-products">
+          <span className="title-page">Nenhum resultado encontrado</span>
+        </div>
+        <Footer></Footer>
       </div>
     );
   }
