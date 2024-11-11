@@ -1,60 +1,60 @@
 .login-info {
-    max-width: 430px;
-    margin: 0 auto 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    background-color: #fff;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-    height: auto;
-    padding-top: 40px;
+  max-width: 430px;
+  margin: 0 auto 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  height: auto;
+  padding-top: 40px;
 }
 
 .icon-username {
-    background: url('https://id.heroku.com/assets/icon-username.png');
-    background-repeat: repeat;
+  background: url("https://id.heroku.com/assets/icon-username.png");
+  background-repeat: repeat;
 }
 
 .icon-password {
-    background: url('https://id.heroku.com/assets/icon-password.png');
-    background-repeat: repeat;
+  background: url("https://id.heroku.com/assets/icon-password.png");
+  background-repeat: repeat;
 }
 
 form .input-icon {
-    position: absolute;
-    bottom: 13px;
-    margin-top: -9px;
-    left: 12px;
-    width: 18px;
-    height: 18px;
+  position: absolute;
+  bottom: 13px;
+  margin-top: -9px;
+  left: 12px;
+  width: 18px;
+  height: 18px;
 }
 
 .content-field {
-    position: relative;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .email-admin {
-    height: 44px;
-    padding-left: 50px;
+  height: 44px;
+  padding-left: 50px;
 }
 
 .input-fields {
-    padding: 40px;
+  padding: 40px;
 }
 
 .admin-btn {
-    margin-top: 20px;
-    width: 100%;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .img-logo-admin {
-    width: 10%;
-    margin-top: 110px;
-    margin-bottom: 30px;
+  width: 10%;
+  margin-top: 110px;
+  margin-bottom: 30px;
 }

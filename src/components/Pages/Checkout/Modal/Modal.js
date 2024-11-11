@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
-import './Modal.css';
+import React, { useState } from "react";
+import "./Modal.css";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 function Modal({ closeModal }) {
   const navigate = useNavigate();
 
-  var baseURL = '';
-  
-  if (window.location.hostname.includes('localhost') || window.location.hostname === 'localhost') {
-    baseURL = 'http://localhost:3000/dema/client';
+  var baseURL = "";
+
+  if (
+    window.location.hostname.includes("localhost") ||
+    window.location.hostname === "localhost"
+  ) {
+    baseURL = "http://localhost:3000/dema/client";
   } else {
-    baseURL = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/client';
+    baseURL = "https://dema-api-d36ba11b74d8.herokuapp.com/dema/client";
   }
 
   const [formData, setFormData] = useState({
@@ -25,27 +28,27 @@ function Modal({ closeModal }) {
     address3: "",
     city: "",
     state: "",
-    county: ""
+    county: "",
   });
 
   const notifyIvalidCep = () => {
-    toast.warn('CEP inválido!');
+    toast.warn("CEP inválido!");
   };
 
   const notifyErrorCep = () => {
-    toast.error('Erro ao buscar o CEP.');
+    toast.error("Erro ao buscar o CEP.");
   };
 
   const notifyAddressAdded = () => {
-    toast.success('Endereço salvo!');
+    toast.success("Endereço salvo!");
   };
 
   const notifyAddressError = () => {
-    toast.error('Erro ao salvar endereço!');
+    toast.error("Erro ao salvar endereço!");
   };
 
   const notifyEmptyFields = () => {
-    toast.error('Preencha todos os campos!');
+    toast.error("Preencha todos os campos!");
   };
 
   const handleChangePostalCode = async (event) => {
@@ -58,7 +61,9 @@ function Modal({ closeModal }) {
 
     if (newPostalCode.length === 8) {
       try {
-        const response = await axios.get(`https://viacep.com.br/ws/${newPostalCode}/json/`);
+        const response = await axios.get(
+          `https://viacep.com.br/ws/${newPostalCode}/json/`
+        );
 
         if (response.data.erro) {
           setFormData((prevFormData) => ({
@@ -69,23 +74,22 @@ function Modal({ closeModal }) {
             address3: "",
             city: "",
             state: "",
-            county: ""
+            county: "",
           }));
 
           return notifyIvalidCep();
-        } 
+        }
 
         setFormData((prevFormData) => ({
           ...prevFormData,
           address1: response.data.logradouro,
           county: response.data.bairro,
           city: response.data.localidade,
-          state: response.data.uf
+          state: response.data.uf,
         }));
-        
       } catch (error) {
         notifyErrorCep();
-        
+
         setFormData((prevFormData) => ({
           ...prevFormData,
           postalCode: "",
@@ -94,7 +98,7 @@ function Modal({ closeModal }) {
           address3: "",
           city: "",
           state: "",
-          county: ""
+          county: "",
         }));
       }
     }
@@ -108,7 +112,7 @@ function Modal({ closeModal }) {
   };
 
   const areFieldsFilled = () => {
-    return Object.values(formData).every(field => field.trim() !== "");
+    return Object.values(formData).every((field) => field.trim() !== "");
   };
 
   const sendAddressData = async (event) => {
@@ -128,7 +132,7 @@ function Modal({ closeModal }) {
         address3: formData.address3,
         city: formData.city,
         state: formData.state,
-        county: formData.county
+        county: formData.county,
       };
 
       const response = await axios.post(baseURL, data);
@@ -149,7 +153,7 @@ function Modal({ closeModal }) {
         address3: "",
         city: "",
         state: "",
-        county: ""
+        county: "",
       });
     } catch (error) {
       notifyAddressError();
@@ -163,7 +167,7 @@ function Modal({ closeModal }) {
         address3: "",
         city: "",
         state: "",
-        county: ""
+        county: "",
       });
     }
   };
@@ -173,8 +177,10 @@ function Modal({ closeModal }) {
       <ToastContainer />
       <div className="modal">
         <div className="modal-content">
-          <div className='modal-header-custom'>
-            <span className="close" onClick={closeModal}>&times;</span>
+          <div className="modal-header-custom">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
           </div>
           <form onSubmit={sendAddressData}>
             <div>
@@ -261,7 +267,9 @@ function Modal({ closeModal }) {
               />
             </div>
             <div>
-              <button type="submit" className="btn btn-success verifyIdentity">Salvar e continuar</button>
+              <button type="submit" className="btn btn-success verifyIdentity">
+                Salvar e continuar
+              </button>
             </div>
           </form>
         </div>

@@ -1,50 +1,46 @@
 .card-form {
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    width: 30%;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 30%;
 }
 
 .form-custom {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .content-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 10px;
 }
 
 .content-form-checkbox {
-    display: flex;
-    margin-top: 10px;
-}
-
-.span-label {
-    /* color: white; */
+  display: flex;
+  margin-top: 10px;
 }
 
 .input-add-products {
-    display: flex;
-    width: 100%;
-    height: 40px;
-    border-radius: 8px;
-    border: 1px solid;
+  display: flex;
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid;
 }
 
 .input-add-products-checkbox {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .textarea-custom {
-    display: flex;
-    width: 100%;
-    min-height: 40px;
-    height: 80px;
-    border-radius: 8px;
-    border: 1px solid;  
+  display: flex;
+  width: 100%;
+  min-height: 40px;
+  height: 80px;
+  border-radius: 8px;
+  border: 1px solid;
 }

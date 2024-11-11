@@ -17,12 +17,15 @@ function SearchResults() {
     fetchData(location.state.searchTerm);
   }, [location.state?.searchTerm]);
 
-  var baseURL = '';
+  var baseURL = "";
 
-  if (window.location.hostname.includes('localhost') || window.location.hostname === 'localhost') {
-    baseURL = 'http://localhost:3000/dema/searchResults';
+  if (
+    window.location.hostname.includes("localhost") ||
+    window.location.hostname === "localhost"
+  ) {
+    baseURL = "http://localhost:3000/dema/searchResults";
   } else {
-    baseURL = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/searchResults';
+    baseURL = "https://dema-api-d36ba11b74d8.herokuapp.com/dema/searchResults";
   }
 
   async function fetchData(searchTerm) {
@@ -55,8 +58,10 @@ function SearchResults() {
       <div className="">
         <Header></Header>
         <div className="listing-products">
-          <span className="title-page">Resultados para "{location.state.searchTerm}"</span>
-  
+          <span className="title-page">
+            Resultados para "{location.state.searchTerm}"
+          </span>
+
           <div className="content-cards">
             {data.map((product) => (
               <Card key={product._id} product={product}></Card>

@@ -1,27 +1,23 @@
 @media (max-width: 768px) {
-    .img-confirmation {
-        width: 70%;
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
+  .img-confirmation {
+    width: 70%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
 }
 
 @media (min-width: 768px) {
-    .img-confirmation {
-        width: 25%;
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
+  .img-confirmation {
+    width: 25%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
 }
 
 .confirmation {
-    width: 100%;
-}
-
-.jumbotron {
-    /* background-color: #ffc107 !important; */
+  width: 100%;
 }
 
 .alert {
-    position: initial;
+  position: initial;
 }

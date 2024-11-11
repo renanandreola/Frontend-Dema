@@ -22,22 +22,22 @@
 
   .input-search {
     border-color: #ffc107;
-    border-radius: 4px 0px 0px 4px!important;
-    height: 39px!important;
-    width: 315px!important;
+    border-radius: 4px 0px 0px 4px !important;
+    height: 39px !important;
+    width: 315px !important;
   }
 }
 
 .header {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
-    border-bottom: 1px solid;
-    background-color: black!important;
-    position: fixed;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  border-bottom: 1px solid;
+  background-color: black !important;
+  position: fixed;
 }
 
 .header-right {
@@ -49,17 +49,17 @@
 }
 
 .img-logo {
-    width: 100px;
+  width: 100px;
 }
 
 .img-wpp {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 50px;
-    height: auto;
-    z-index: 1000;
-    cursor: pointer;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 50px;
+  height: auto;
+  z-index: 1000;
+  cursor: pointer;
 }
 
 .form-search {

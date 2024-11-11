@@ -6,13 +6,16 @@ import Card from "../../../layout/ProductCard/Card";
 function AllProducts() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  
-  var baseURL = '';
 
-  if (window.location.hostname.includes('localhost') || window.location.hostname === 'localhost') {
-    baseURL = 'http://localhost:3000/dema/products';
+  var baseURL = "";
+
+  if (
+    window.location.hostname.includes("localhost") ||
+    window.location.hostname === "localhost"
+  ) {
+    baseURL = "http://localhost:3000/dema/products";
   } else {
-    baseURL = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/products';
+    baseURL = "https://dema-api-d36ba11b74d8.herokuapp.com/dema/products";
   }
 
   useEffect(() => {

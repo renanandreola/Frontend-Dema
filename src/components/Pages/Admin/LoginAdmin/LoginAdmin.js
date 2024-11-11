@@ -3,7 +3,7 @@ import "./LoginAdmin.css";
 import Header from "../../../layout/Header/Header";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 function LoginAdmin() {
@@ -21,28 +21,30 @@ function LoginAdmin() {
   };
 
   const notifyLoginError = () => {
-    toast.error('Login inválido.');
+    toast.error("Login inválido.");
   };
 
   const notifyLoginSuccess = () => {
-    toast.success('Login efetuado.');
+    toast.success("Login efetuado.");
   };
 
   const createLogin = async (event) => {
     event.preventDefault();
     try {
-
       var data = {
         email: formData.email,
         password: formData.password,
       };
 
-      var baseURL = '';
-  
-      if (window.location.hostname.includes('localhost') || window.location.hostname === 'localhost') {
-        baseURL = 'http://localhost:3000/dema/loginAdmin';
+      var baseURL = "";
+
+      if (
+        window.location.hostname.includes("localhost") ||
+        window.location.hostname === "localhost"
+      ) {
+        baseURL = "http://localhost:3000/dema/loginAdmin";
       } else {
-        baseURL = 'https://dema-api-d36ba11b74d8.herokuapp.com/dema/loginAdmin';
+        baseURL = "https://dema-api-d36ba11b74d8.herokuapp.com/dema/loginAdmin";
       }
 
       const response = await axios.post(baseURL, data);
@@ -82,30 +84,51 @@ function LoginAdmin() {
   return (
     <>
       <Header></Header>
-      <ToastContainer/>
+      <ToastContainer />
 
       <div className="content-login">
         <div>
-            <img className="img-logo-admin" src={`${process.env.PUBLIC_URL}/Dema-logo-2.png`} alt="Logo" />
+          <img
+            className="img-logo-admin"
+            src={`${process.env.PUBLIC_URL}/Dema-logo-2.png`}
+            alt="Logo"
+          />
         </div>
 
         <div className="login-info">
-            <h2 className="login-title">Acesso administrador</h2>
-            <form className="input-fields" onSubmit={createLogin}>
-                <div className="form-group content-field">
-                    <label for="email">Endereço de e-mail</label>
-                    <div className="input-icon icon-username"></div>
-                    <input className="form-control email-admin" id="email" name="email" placeholder="admin@admin.com" type="email" value={formData.email} onChange={handleChange}/>
-                </div>
+          <h2 className="login-title">Acesso administrador</h2>
+          <form className="input-fields" onSubmit={createLogin}>
+            <div className="form-group content-field">
+              <label for="email">Endereço de e-mail</label>
+              <div className="input-icon icon-username"></div>
+              <input
+                className="form-control email-admin"
+                id="email"
+                name="email"
+                placeholder="admin@admin.com"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
 
-                <div className="form-group content-field">
-                    <label for="email">Senha</label>
-                    <div className="input-icon icon-password"></div>
-                    <input className="form-control email-admin" type="password" name="password" value={formData.password} id="password" placeholder="Senha" onChange={handleChange}/>
-                </div>
-                <button type="submit" className="btn btn-warning admin-btn">Entrar</button>
-            </form>
-
+            <div className="form-group content-field">
+              <label for="email">Senha</label>
+              <div className="input-icon icon-password"></div>
+              <input
+                className="form-control email-admin"
+                type="password"
+                name="password"
+                value={formData.password}
+                id="password"
+                placeholder="Senha"
+                onChange={handleChange}
+              />
+            </div>
+            <button type="submit" className="btn btn-warning admin-btn">
+              Entrar
+            </button>
+          </form>
         </div>
       </div>
     </>

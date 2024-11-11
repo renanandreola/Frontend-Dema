@@ -1,26 +1,26 @@
 .shipping {
-    width: 95%;
+  width: 95%;
 }
 
 .btn-shipping {
-    width: 100%;
-    font-weight: bold;
+  width: 100%;
+  font-weight: bold;
 }
 
 .finish-order-content-desk {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
 }
 
 .select-group-desk {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
 }
 
 .finish-btn-desk {
-    display: flex;
-    width: 40%;
+  display: flex;
+  width: 40%;
 }

@@ -1,31 +1,31 @@
 .tabs {
-    display: flex;
-    margin-bottom: 10px;
-    padding: 70px 5% 0px 5%;
+  display: flex;
+  margin-bottom: 10px;
+  padding: 70px 5% 0px 5%;
 }
-  
+
 .tabs button {
-    padding: 10px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
 }
-  
+
 .tabs button.active {
-    background-color: #ddd;
-    border-bottom: none;
-    font-weight: bold;
-    text-decoration: underline;
+  background-color: #ddd;
+  border-bottom: none;
+  font-weight: bold;
+  text-decoration: underline;
 }
-  
+
 .content {
-    padding: 10px;
-    border: 1px solid transparent;
-    margin: 0 5% 0px 5%;
-    padding: 0;
+  padding: 10px;
+  border: 1px solid transparent;
+  margin: 0 5% 0px 5%;
+  padding: 0;
 }
 
 .table-products {
-    background-color: white;
-    margin-bottom: 0;
+  background-color: white;
+  margin-bottom: 0;
 }
