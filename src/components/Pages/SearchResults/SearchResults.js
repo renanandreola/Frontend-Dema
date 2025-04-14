@@ -25,7 +25,7 @@ function SearchResults() {
   ) {
     baseURL = "http://localhost:3000/dema/searchResults";
   } else {
-    baseURL = "https://dema-api.vercel.app/dema/searchResults";
+    baseURL = "https://dema-api-d36ba11b74d8.herokuapp.com/dema/searchResults";
   }
 
   async function fetchData(searchTerm) {
