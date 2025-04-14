@@ -19,10 +19,8 @@ function TableProducts() {
     baseUrlProducts = "http://localhost:3000/dema/products";
     baseUrlRemoveProducts = "http://localhost:3000/dema/removeProduct";
   } else {
-    baseUrlProducts =
-      "https://dema-api-d36ba11b74d8.herokuapp.com/dema/products";
-    baseUrlRemoveProducts =
-      "https://dema-api-d36ba11b74d8.herokuapp.com/dema/removeProduct";
+    baseUrlProducts = "dema-api.vercel.app/dema/products";
+    baseUrlRemoveProducts = "dema-api.vercel.app/dema/removeProduct";
   }
 
   useEffect(() => {

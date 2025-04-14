@@ -38,7 +38,7 @@ function Checkout() {
   ) {
     baseURL = "http://localhost:3000/dema/login";
   } else {
-    baseURL = "https://dema-api-d36ba11b74d8.herokuapp.com/dema/login";
+    baseURL = "dema-api.vercel.app/dema/login";
   }
 
   const navigate = useNavigate();

@@ -16,9 +16,8 @@ function TableClients() {
     baseUrlClients = "http://localhost:3000/dema/clients";
     baseUrlRemoveClients = "http://localhost:3000/dema/removeClient";
   } else {
-    baseUrlClients = "https://dema-api-d36ba11b74d8.herokuapp.com/dema/clients";
-    baseUrlRemoveClients =
-      "https://dema-api-d36ba11b74d8.herokuapp.com/dema/removeClient";
+    baseUrlClients = "dema-api.vercel.app/dema/clients";
+    baseUrlRemoveClients = "dema-api.vercel.app/dema/removeClient";
   }
 
   useEffect(() => {

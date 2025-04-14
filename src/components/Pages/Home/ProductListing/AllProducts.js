@@ -15,7 +15,7 @@ function AllProducts() {
   ) {
     baseURL = "http://localhost:3000/dema/products";
   } else {
-    baseURL = "https://dema-api-d36ba11b74d8.herokuapp.com/dema/products";
+    baseURL = "dema-api.vercel.app/dema/products";
   }
 
   useEffect(() => {
