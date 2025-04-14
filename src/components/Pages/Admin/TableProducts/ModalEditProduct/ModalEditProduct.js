@@ -22,7 +22,7 @@ const ModalEditProduct = ({ product, closeModal }) => {
   ) {
     baseURL = "http://localhost:3000/dema/editproduct";
   } else {
-    baseURL = "dema-api.vercel.app/dema/editproduct";
+    baseURL = "https://dema-api.vercel.app/dema/editproduct";
   }
 
   const handleChange = (e) => {

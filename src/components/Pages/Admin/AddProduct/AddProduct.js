@@ -22,7 +22,7 @@ const AddProduct = () => {
   ) {
     baseURL = "http://localhost:3000/dema/addproduct";
   } else {
-    baseURL = "dema-api.vercel.app/dema/addproduct";
+    baseURL = "https://dema-api.vercel.app/dema/addproduct";
   }
 
   const handleChange = (e) => {

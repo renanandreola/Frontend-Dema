@@ -19,8 +19,8 @@ function TableProducts() {
     baseUrlProducts = "http://localhost:3000/dema/products";
     baseUrlRemoveProducts = "http://localhost:3000/dema/removeProduct";
   } else {
-    baseUrlProducts = "dema-api.vercel.app/dema/products";
-    baseUrlRemoveProducts = "dema-api.vercel.app/dema/removeProduct";
+    baseUrlProducts = "https://dema-api.vercel.app/dema/products";
+    baseUrlRemoveProducts = "https://dema-api.vercel.app/dema/removeProduct";
   }
 
   useEffect(() => {

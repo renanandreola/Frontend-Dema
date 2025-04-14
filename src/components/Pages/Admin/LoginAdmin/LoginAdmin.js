@@ -44,7 +44,7 @@ function LoginAdmin() {
       ) {
         baseURL = "http://localhost:3000/dema/loginAdmin";
       } else {
-        baseURL = "dema-api.vercel.app/dema/loginAdmin";
+        baseURL = "https://dema-api.vercel.app/dema/loginAdmin";
       }
 
       const response = await axios.post(baseURL, data);

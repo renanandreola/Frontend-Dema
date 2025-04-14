@@ -38,7 +38,7 @@ function Checkout() {
   ) {
     baseURL = "http://localhost:3000/dema/login";
   } else {
-    baseURL = "dema-api.vercel.app/dema/login";
+    baseURL = "https://dema-api.vercel.app/dema/login";
   }
 
   const navigate = useNavigate();

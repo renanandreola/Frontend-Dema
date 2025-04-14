@@ -16,7 +16,7 @@ function Modal({ closeModal }) {
   ) {
     baseURL = "http://localhost:3000/dema/client";
   } else {
-    baseURL = "dema-api.vercel.app/dema/client";
+    baseURL = "https://dema-api.vercel.app/dema/client";
   }
 
   const [formData, setFormData] = useState({
