@@ -1,4 +1,4 @@
-.renan {
+/* .renan {
   color: #6c757d !important;
   text-decoration: underline;
 }
@@ -13,4 +13,9 @@
   border-top: 1px solid;
   align-items: center;
   flex-direction: column;
+} */
+
+footer a:hover {
+  color: #ffc107;
+  transition: color 0.3s;
 }

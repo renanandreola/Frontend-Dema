@@ -95,7 +95,7 @@ function Shipping() {
           </div>
 
           <div className="m-1">
-            <div className="progress">
+            {/* <div className="progress">
               <div
                 className="progress-bar progress-bar-striped bg-warning progress-bar-animated shipping"
                 role="progressbar"
@@ -105,7 +105,7 @@ function Shipping() {
               >
                 95%
               </div>
-            </div>
+            </div> */}
 
             <div className="alert alert-warning mt-4" role="alert">
               Atualmente estamos em operação voltada para a cidade de Erechim -
@@ -128,12 +128,12 @@ function Shipping() {
               </select>
             </div>
 
-            <a
+            <button
               className="btn btn-warning btn-shipping"
               onClick={finishShippingOrder}
             >
               Finalizar
-            </a>
+            </button>
           </div>
         </div>
 
@@ -186,18 +186,17 @@ function Shipping() {
                 </select>
               </div>
 
-              <a
+              <button
                 className="btn btn-warning btn-shipping finish-btn-desk"
                 onClick={finishShippingOrder}
               >
                 Finalizar
-              </a>
+              </button>
             </div>
           </div>
         </div>
-
-        <Footer></Footer>
       </div>
+      <Footer></Footer>
     </>
   );
 }

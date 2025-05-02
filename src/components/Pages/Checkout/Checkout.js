@@ -1,6 +1,7 @@
 import "./Checkout.css";
 import React, { useState, useContext, useEffect } from "react";
 import Header from "../../layout/Header/Header";
+import Footer from "../../layout/Footer/Footer";
 import { CartContext } from "../../Contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -162,7 +163,7 @@ function Checkout() {
           </div>
 
           <div className="m-1">
-            <div className="progress">
+            {/* <div className="progress">
               <div
                 className="progress-bar progress-bar-striped bg-warning progress-bar-animated checkout"
                 role="progressbar"
@@ -172,7 +173,7 @@ function Checkout() {
               >
                 75%
               </div>
-            </div>
+            </div> */}
 
             <div className="alert alert-warning mt-4" role="alert">
               Atualmente estamos em operação voltada para a cidade de Erechim -
@@ -229,6 +230,7 @@ function Checkout() {
                     Você selecionou <strong>Retirada em loja</strong>
                   </span>
                   <iframe
+                    title="checkout"
                     className="iframe-custom"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d262.7039098341386!2d-52.27858315248888!3d-27.639737628988467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e3158cf9b8152b%3A0x4ad2f7692d4b3148!2sDemarco%20Hookah!5e0!3m2!1spt-BR!2sbr!4v1720672023292!5m2!1spt-BR!2sbr"
                     allowfullscreen=""
@@ -263,6 +265,7 @@ function Checkout() {
                     Você selecionou <strong>Retirada em loja</strong>
                   </span>
                   <iframe
+                    title="checkout2"
                     className="iframe-custom"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d262.7039098341386!2d-52.27858315248888!3d-27.639737628988467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e3158cf9b8152b%3A0x4ad2f7692d4b3148!2sDemarco%20Hookah!5e0!3m2!1spt-BR!2sbr!4v1720672023292!5m2!1spt-BR!2sbr"
                     allowfullscreen=""
@@ -318,12 +321,12 @@ function Checkout() {
                             {addressData.city} - {addressData.state},{" "}
                             {addressData.address3}
                           </p>
-                          <a
+                          <button
                             className="btn btn-warning btn-user-address"
                             onClick={finishOrderShipping}
                           >
                             Confirmar e continuar
-                          </a>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -373,12 +376,12 @@ function Checkout() {
                             {addressData.city} - {addressData.state},{" "}
                             {addressData.address3}
                           </p>
-                          <a
+                          <button
                             className="btn btn-warning btn-user-address"
                             onClick={finishOrderShipping}
                           >
                             Confirmar e continuar
-                          </a>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -413,6 +416,7 @@ function Checkout() {
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </>
   );
 }

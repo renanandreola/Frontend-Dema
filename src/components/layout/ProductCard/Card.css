@@ -92,6 +92,8 @@
   height: 30px;
   padding: 0;
   width: 35%;
+  font-weight: bold;
+  background: linear-gradient(to right, #fff3b3, #e0a800, #d39e00);
 }
 
 .content-controls {

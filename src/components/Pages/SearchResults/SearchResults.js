@@ -14,34 +14,35 @@ function SearchResults() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    var baseURL = "";
+
+    if (
+      window.location.hostname.includes("localhost") ||
+      window.location.hostname === "localhost"
+    ) {
+      baseURL = "http://localhost:3000/dema/searchResults";
+    } else {
+      baseURL =
+        "https://dema-api-d36ba11b74d8.herokuapp.com/dema/searchResults";
+    }
+
+    async function fetchData(searchTerm) {
+      try {
+        let search = {
+          searchTerm: searchTerm,
+        };
+        const response = await axios.post(baseURL, search);
+        console.log("response: ", response);
+        setData(response.data.results);
+      } catch (error) {
+        console.error("Erro:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
     fetchData(location.state.searchTerm);
   }, [location.state?.searchTerm]);
-
-  var baseURL = "";
-
-  if (
-    window.location.hostname.includes("localhost") ||
-    window.location.hostname === "localhost"
-  ) {
-    baseURL = "http://localhost:3000/dema/searchResults";
-  } else {
-    baseURL = "https://dema-api-d36ba11b74d8.herokuapp.com/dema/searchResults";
-  }
-
-  async function fetchData(searchTerm) {
-    try {
-      let search = {
-        searchTerm: searchTerm,
-      };
-      const response = await axios.post(baseURL, search);
-      console.log("response: ", response);
-      setData(response.data.results);
-    } catch (error) {
-      console.error("Erro:", error);
-    } finally {
-      setLoading(false);
-    }
-  }
 
   if (loading) {
     return (

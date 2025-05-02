@@ -40,7 +40,7 @@ const Cart = () => {
 
         <div className="content-cart-desk">
           <div className="breadcrumb-custom">
-            <a href="/" className="text-breadcrumb">
+            {/* <a href="/" className="text-breadcrumb">
               Página inicial
             </a>
 
@@ -62,7 +62,7 @@ const Cart = () => {
 
             <a href="/cart" className="text-breadcrumb">
               Carrinho
-            </a>
+            </a> */}
           </div>
 
           <div className="cart-title">
@@ -70,7 +70,7 @@ const Cart = () => {
           </div>
 
           <div className="m-1">
-            <div className="progress">
+            {/* <div className="progress">
               <div
                 className="progress-bar progress-bar-striped bg-warning progress-bar-animated cart"
                 role="progressbar"
@@ -80,7 +80,7 @@ const Cart = () => {
               >
                 50%
               </div>
-            </div>
+            </div> */}
 
             {cartItems.map((product) => (
               <div className="cart-content">
@@ -113,7 +113,10 @@ const Cart = () => {
                   </div>
 
                   <div className="product-total">
-                    <span className="text-cart">Qtd.: {product.qtd}</span>
+                    <span className="text-cart">Quantidade: {product.qtd}</span>
+                  </div>
+
+                  <div className="product-total">
                     <span className="text-cart">Total:</span>
                     <span className="text-cart">
                       <strong>
@@ -132,7 +135,7 @@ const Cart = () => {
 
             <div className="actions-cart">
               <a href="/">
-                <button type="button" className="btn btn-success">
+                <button type="button" className="btn btn-warning">
                   Adionar mais itens
                 </button>
               </a>
@@ -152,6 +155,14 @@ const Cart = () => {
                 <li className="list-group-item align-list-custom">
                   <span>Total de produtos:</span>
                   <span>{getTotalCartUnity()}</span>
+                </li>
+                <li className="list-group-item align-list-custom">
+                  <span>Descontos:</span>
+                  <span>R$ 0,00</span>
+                </li>
+                <li className="list-group-item align-list-custom">
+                  <span>Frete:</span>
+                  <span>não selecionado</span>
                 </li>
                 <li className="list-group-item align-list-custom">
                   <span>
@@ -175,9 +186,8 @@ const Cart = () => {
               </a>
             </div>
           </div>
-
-          <Footer></Footer>
         </div>
+        <Footer></Footer>
       </>
     ) : (
       <>
@@ -185,7 +195,7 @@ const Cart = () => {
 
         <div className="content-cart-desk">
           <div className="breadcrumb-custom">
-            <a href="/" className="text-breadcrumb">
+            {/* <a href="/" className="text-breadcrumb">
               Página inicial
             </a>
 
@@ -207,7 +217,7 @@ const Cart = () => {
 
             <a href="/cart" className="text-breadcrumb">
               Carrinho
-            </a>
+            </a> */}
           </div>
 
           <div className="cart-title">
@@ -215,7 +225,7 @@ const Cart = () => {
           </div>
 
           <div className="m-1">
-            <div className="progress">
+            {/* <div className="progress">
               <div
                 className="progress-bar progress-bar-striped bg-warning progress-bar-animated cart"
                 role="progressbar"
@@ -225,7 +235,7 @@ const Cart = () => {
               >
                 50%
               </div>
-            </div>
+            </div> */}
 
             <div className="cart-content-desk">
               <div className="cart-content-desk-left">
@@ -262,7 +272,12 @@ const Cart = () => {
                       </div>
 
                       <div className="product-total">
-                        <span className="text-cart">Qtd.: {product.qtd}</span>
+                        <span className="text-cart">
+                          Quantidade: {product.qtd}
+                        </span>
+                      </div>
+
+                      <div className="product-total">
                         <span className="text-cart">Total:</span>
                         <span className="text-cart">
                           <strong>
@@ -281,8 +296,12 @@ const Cart = () => {
                 </div>
 
                 <div className="actions-cart">
-                  <a href="/">
-                    <button type="button" className="btn btn-success">
+                  <a href="/" style={{ width: "49%" }}>
+                    <button
+                      type="button"
+                      className="btn btn-warning"
+                      style={{ width: "100%" }}
+                    >
                       Adionar mais itens
                     </button>
                   </a>
@@ -290,6 +309,7 @@ const Cart = () => {
                   <button
                     type="button"
                     className="btn btn-danger"
+                    style={{ width: "49%" }}
                     onClick={() => removeAllCart()}
                   >
                     Excluir carrinho
@@ -305,6 +325,15 @@ const Cart = () => {
                       <span>Total de produtos:</span>
                       <span>{getTotalCartUnity()}</span>
                     </li>
+                    <li className="list-group-item align-list-custom">
+                      <span>Descontos:</span>
+                      <span>R$ 0,00</span>
+                    </li>
+                    <li className="list-group-item align-list-custom">
+                      <span>Frete:</span>
+                      <span>não selecionado</span>
+                    </li>
+                    <hr></hr>
                     <li className="list-group-item align-list-custom">
                       <span>
                         <strong>VALOR TOTAL:</strong>
@@ -329,9 +358,8 @@ const Cart = () => {
               </div>
             </div>
           </div>
-
-          <Footer></Footer>
         </div>
+        <Footer></Footer>
       </>
     );
   } else {

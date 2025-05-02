@@ -66,13 +66,13 @@ function Confirmation() {
               </div>
             )}
 
-            <div>
+            {/* <div>
               <img
                 className="img-confirmation"
                 src={`${process.env.PUBLIC_URL}/Dema-logo-2.png`}
                 alt="Logo"
               />
-            </div>
+            </div> */}
 
             <div className="jumbotron padding-jumbotron">
               <span className="cart-resume-title">RESUMO DO PEDIDO</span>
@@ -93,6 +93,8 @@ function Confirmation() {
                     <span>R$ 0,00</span>
                   </li>
                 )}
+
+                <hr></hr>
 
                 <li className="list-group-item align-list-custom">
                   <span>
@@ -117,9 +119,8 @@ function Confirmation() {
             </a>
           </div>
         </div>
-
-        <Footer></Footer>
       </div>
+      <Footer></Footer>
     </>
   );
 }

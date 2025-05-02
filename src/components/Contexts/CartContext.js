@@ -43,7 +43,7 @@ export const CartProvider = ({ children }) => {
       un += product.qtd;
     });
 
-    return un + " unidades";
+    return un + " unidade(s)";
   };
 
   return (
