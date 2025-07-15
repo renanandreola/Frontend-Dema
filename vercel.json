@@ -1,8 +1,11 @@
 {
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/maintenance.html"
-    }
-  ]
+  "version": 2,
+  "builds": [
+    { "src": "package.json", "use": "@vercel/static-build" }
+  ],
+  "routes": [
+    { "src": "/maintenance.html", "dest": "/maintenance.html" },
+    { "src": "/(.*)", "dest": "/maintenance.html" }
+  ],
+  "cleanUrls": false
 }
