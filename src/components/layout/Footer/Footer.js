@@ -1,5 +1,5 @@
 import React from "react";
-import "./Footer.css"; // opcional para estilos extras
+import "./Footer.css";
 
 function Footer() {
   return (
@@ -55,8 +55,8 @@ function Footer() {
 
           <div className="col-md-3 mb-4">
             <h5>Horário</h5>
-            <p>Seg a Sex: 08h – 18h</p>
-            <p>Sábados: 08h – 12h</p>
+            <p>Seg a Sab: 09h – 19h</p>
+            {/* <p>Sábados: 09h – 19h</p> */}
           </div>
         </div>
 
