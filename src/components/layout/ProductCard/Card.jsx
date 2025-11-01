@@ -4,120 +4,60 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../Contexts/CartContext";
 import { ToastContainer, toast } from "react-toastify";
 
-function Card(props) {
-  const [inputValue, setInputValue] = useState(0);
+function Card({ product }) {
+  const [inputValue, setInputValue] = useState(1);
   const navigate = useNavigate();
-
   const { addToCart } = useContext(CartContext);
 
-  const goToProduct = (id) => {
-    navigate("/product-details", { state: { productId: id } });
-  };
+  const goToProduct = () => navigate("/product-details", { state: { productId: product._id } });
 
-  const notifyInvalidQtd = () => {
-    toast.error("Quantidade inválida!", {
-      autoClose: 800,
-    });
-  };
+  const notifyInvalidQtd = () => toast.error("Quantidade inválida!", { autoClose: 800 });
+  const notifyUnavailableQtd = () => toast.warn("Quantidade indisponível.", { autoClose: 800 });
 
-  const notifyUnavailableQtd = () => {
-    toast.warn("Quantidade indisponível.", {
-      autoClose: 800,
-    });
-  };
-
-  const handleAddCart = (productProps) => {
-    if (!inputValue || inputValue === 0 || inputValue === "0") {
-      return notifyInvalidQtd();
-    }
-
-    if (inputValue > productProps.product.stock) {
-      return notifyUnavailableQtd();
-    }
+  const handleAddCart = () => {
+    if (!inputValue || inputValue <= 0) return notifyInvalidQtd();
+    if (inputValue > product.stock) return notifyUnavailableQtd();
 
     addToCart({
-      id: productProps.product._id,
-      name: productProps.product.name,
-      price: productProps.product.price,
+      id: product._id,
+      name: product.name,
+      price: product.price,
       qtd: parseInt(inputValue),
-      stock: productProps.product.stock,
-      image: productProps.product.image,
+      stock: product.stock,
+      image: product.image,
     });
   };
 
-  const handleChange = (event) => {
-    if (event.target.value < 0) {
-      setInputValue(0);
-    } else {
-      setInputValue(event.target.value);
-    }
-  };
-
-  const handleChangeMore = () => {
-    setInputValue(inputValue + 1);
-  };
-
-  const handleChangeLess = () => {
-    if (inputValue === 0 || inputValue < 0) {
-      setInputValue(0);
-    } else {
-      setInputValue(inputValue - 1);
-    }
-  };
-
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(value);
-  };
+  const formatCurrency = (value) =>
+    new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(value);
 
   return (
     <>
       <ToastContainer />
-
-      <div className="Card">
-        <div
-          className="card-left"
-          onClick={() => goToProduct(props.product._id)}
-        >
-          <img className="image-product" src={props.product.image} alt="" />
+      <div className="Card-modern">
+        <div className="Card-image-wrapper" onClick={goToProduct}>
+          <img src={product.image} alt={product.name} className="Card-image" loading="lazy" />
         </div>
 
-        <div className="card-right">
-          <span
-            className="product-name"
-            onClick={() => goToProduct(props.product._id)}
-          >
-            {props.product.name}
-          </span>
-          <span className="product-code">
-            Cód. {props.product._id.slice(0, 4)}
-          </span>
-          <span className="product-price">
-            {formatCurrency(props.product.price)}
-          </span>
+        <div className="Card-info">
+          <h3 className="Card-title" onClick={goToProduct}>
+            {product.name}
+          </h3>
+          <span className="Card-price">{formatCurrency(product.price)}</span>
 
-          <div className="product-actions">
-            <div className="content-controls">
-              <button className="button-qtd" onClick={handleChangeLess}>
-                -
-              </button>
+          <div className="Card-controls">
+            <div className="Card-quantity">
+              <button onClick={() => setInputValue(Math.max(0, inputValue - 1))}>-</button>
               <input
-                className="input-qtd"
                 type="number"
                 value={inputValue}
-                onChange={handleChange}
+                onChange={(e) => setInputValue(Number(e.target.value))}
               />
-              <button className="button-qtd" onClick={handleChangeMore}>
-                +
-              </button>
+              <button onClick={() => setInputValue(inputValue + 1)}>+</button>
             </div>
-            <button
-              className="btn btn-warning add-cart-custom"
-              onClick={() => handleAddCart(props)}
-            >
-              Comprar
+
+            <button className="Card-buy" onClick={handleAddCart}>
+              Adicionar ao carrinho
             </button>
           </div>
         </div>

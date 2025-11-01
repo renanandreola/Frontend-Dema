@@ -1,5 +1,5 @@
 import "./AddProduct.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -12,21 +12,32 @@ const AddProduct = () => {
     stock: "",
     hasPromotion: false,
     pricePromotion: "",
+    categories: [],
   });
 
-  var baseURL = "";
+  const [categories, setCategories] = useState([]);
 
-  if (
+  const baseURL =
     window.location.hostname.includes("localhost") ||
     window.location.hostname === "localhost"
-  ) {
-    baseURL = "http://localhost:3000/dema/addproduct";
-  } else {
-    baseURL = "https://dema-api-d36ba11b74d8.herokuapp.com/dema/addproduct";
-  }
+      ? "http://localhost:3000/dema"
+      : "https://dema-api-d36ba11b74d8.herokuapp.com/dema";
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await axios.get(`${baseURL}/categories`);
+        if (res.data.status === 200) setCategories(res.data.categories);
+      } catch (err) {
+        console.error("Erro ao buscar categorias:", err);
+      }
+    };
+    fetchCategories();
+  }, [baseURL]);
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
+
     if (type === "file") {
       const file = files[0];
       const reader = new FileReader();
@@ -37,6 +48,9 @@ const AddProduct = () => {
         });
       };
       reader.readAsDataURL(file);
+    } else if (name === "categories") {
+      const selected = Array.from(e.target.selectedOptions, (opt) => opt.value);
+      setForm({ ...form, categories: selected });
     } else {
       setForm({
         ...form,
@@ -45,13 +59,9 @@ const AddProduct = () => {
     }
   };
 
-  const notifySuccessProduct = () => {
-    toast.success("Produto cadastrado com sucesso");
-  };
-
-  const notifyErrorProduct = () => {
-    toast.error("Erro ao cadastrar produto");
-  };
+  const notifySuccessProduct = () =>
+    toast.success("Produto cadastrado com sucesso!");
+  const notifyErrorProduct = () => toast.error("Erro ao cadastrar produto");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,124 +74,148 @@ const AddProduct = () => {
       stock: Number(form.stock),
       hasPromotion: form.hasPromotion,
       pricePromotion: form.hasPromotion ? Number(form.pricePromotion) : null,
+      categories: form.categories,
     };
 
-    const response = await axios.post(baseURL, finalObject);
+    try {
+      const response = await axios.post(`${baseURL}/addproduct`, finalObject);
 
-    if (response && response.data && response.data.status === 200) {
-      notifySuccessProduct();
-    } else {
+      if (response?.data?.status === 200) {
+        notifySuccessProduct();
+        setForm({
+          name: "",
+          price: "",
+          description: "",
+          image: "",
+          stock: "",
+          hasPromotion: false,
+          pricePromotion: "",
+          categories: [],
+        });
+      } else {
+        notifyErrorProduct();
+      }
+    } catch (err) {
+      console.error("Erro ao cadastrar produto:", err);
       notifyErrorProduct();
     }
-
-    setForm({
-      name: "",
-      price: "",
-      description: "",
-      image: "",
-      stock: "",
-      hasPromotion: false,
-      pricePromotion: "",
-    });
   };
 
   return (
-    <form className="form-custom" onSubmit={handleSubmit}>
-      <div className="card-form">
-        <div className="content-form">
-          <span className="span-label">Nome:</span>
+    <div className="add-product-container">
+      <form className="add-product-form" onSubmit={handleSubmit}>
+        <h2 className="form-title">Cadastro de Produto</h2>
+
+        <div className="form-group">
+          <label>Nome</label>
           <input
-            className="input-add-products"
             type="text"
             name="name"
             value={form.name}
             onChange={handleChange}
             required
+            placeholder="Digite o nome do produto"
           />
         </div>
 
-        <div className="content-form">
-          <span className="span-label">Preço:</span>
+        <div className="form-group">
+          <label>Preço (R$)</label>
           <input
-            className="input-add-products"
             type="number"
             name="price"
             value={form.price}
             onChange={handleChange}
             required
+            min="0"
+            step="0.01"
           />
-          <span className="small">Não adicione números negativos</span>
         </div>
 
-        <div className="content-form">
-          <span className="span-label">Descrição:</span>
+        <div className="form-group">
+          <label>Descrição</label>
           <textarea
-            className="textarea-custom"
-            type="text"
             name="description"
             value={form.description}
             onChange={handleChange}
             required
+            rows="3"
+            placeholder="Breve descrição do produto..."
           />
         </div>
 
-        <div className="content-form">
-          <span className="span-label">Imagem:</span>
+        <div className="form-group">
+          <label>Imagem (URL)</label>
           <input
-            className="input-add-products"
             type="text"
             name="image"
             value={form.image}
             onChange={handleChange}
             required
+            placeholder="https://exemplo.com/imagem.jpg"
           />
-          <span className="small">Adicione o link da imagem</span>
         </div>
 
-        <div className="content-form">
-          <span className="span-label">Qtd. em estoque:</span>
+        <div className="form-group">
+          <label>Quantidade em estoque</label>
           <input
-            className="input-add-products"
             type="number"
             name="stock"
             value={form.stock}
             onChange={handleChange}
             required
+            min="0"
           />
-          <span className="small">Não adicione números negativos</span>
         </div>
 
-        <div className="content-form-checkbox">
-          <span className="span-label">Tem promoção?:</span>
-          <input
-            className="input-add-products-checkbox"
-            type="checkbox"
-            name="hasPromotion"
-            checked={form.hasPromotion}
+        <div className="form-group">
+          <label>Categorias</label>
+          <select
+            multiple
+            name="categories"
+            value={form.categories}
             onChange={handleChange}
-          />
+          >
+            {categories.map((cat) => (
+              <option key={cat._id} value={cat._id}>
+                {cat.parent ? `↳ ${cat.name} (${cat.parent.name})` : cat.name}
+              </option>
+            ))}
+          </select>
+          <small>Segure Ctrl para selecionar várias</small>
+        </div>
+
+        <div className="form-group checkbox-group">
+          <label>
+            <input
+              type="checkbox"
+              name="hasPromotion"
+              checked={form.hasPromotion}
+              onChange={handleChange}
+            />
+            Possui promoção?
+          </label>
         </div>
 
         {form.hasPromotion && (
-          <div className="content-form">
-            <span className="span-label">Preço promocional:</span>
+          <div className="form-group">
+            <label>Preço promocional (R$)</label>
             <input
-              className="input-add-products"
               type="number"
               name="pricePromotion"
               value={form.pricePromotion}
               onChange={handleChange}
               required
+              min="0"
+              step="0.01"
             />
-            <span className="small">Não adicione números negativos</span>
           </div>
         )}
 
-        <button className="btn btn-success" type="submit">
-          Cadastrar produto
+        <button type="submit" className="btn-submit">
+          Cadastrar Produto
         </button>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 

@@ -1,12 +1,11 @@
 import "./Shipping.css";
 import React, { useState, useContext, useEffect } from "react";
 import Header from "../../layout/Header/Header";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import Footer from "../../layout/Footer/Footer";
+import { useLocation, useNavigate } from "react-router-dom";
 import { shippingOptions } from "./utils/shipping-options";
 import { CartContext } from "../../Contexts/CartContext";
 import { ToastContainer, toast } from "react-toastify";
-import Footer from "../../layout/Footer/Footer";
 
 function Shipping() {
   const location = useLocation();
@@ -16,187 +15,94 @@ function Shipping() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
     handleResize();
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(value);
+  const formatCurrency = (value) =>
+    new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(value);
+
+  const handleSelectChange = (e) => setSelectedValue(e.target.value);
+
+  const notifyUserNotAccount = () => toast.warn("Parece que você não selecionou seu bairro.");
+
+  const finishShippingOrder = () => {
+    if (!selectedValue) return notifyUserNotAccount();
+
+    const addressData = location.state.userAddress;
+    const products = cartItems.map((p) => `${p.name} (${p.qtd} un.)`).join(", ");
+    const message = `Olá, vim pelo seu site! Gostaria de receber:\n${products}\nNo total de ${formatCurrency(
+      getTotalCartPrice()
+    )}\nEm: ${addressData.address1}, ${addressData.address2}, ${addressData.postalCode} - ${addressData.county}, ${addressData.city} - ${addressData.state}.\nEntrega: ${selectedValue}`;
+
+    const phoneNumber = "5554999101433";
+    const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+    navigate("/confirmation", { state: { shippingMethod: selectedValue } });
   };
 
-  const handleSelectChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
-
-  const notifyUserNotAccount = () => {
-    toast.warn("Parece que você não selecionou seu bairro.");
-  };
-
-  function finishShippingOrder() {
-    if (selectedValue && selectedValue !== "") {
-      var addressData = location.state.userAddress;
-
-      var products = "";
-
-      cartItems.forEach((product) => {
-        products += product.name + " (" + product.qtd + " un.), \n";
-      });
-
-      var message =
-        "Olá, vim pelo seu site! Gostaria de receber: \n" +
-        products +
-        "no total de " +
-        formatCurrency(getTotalCartPrice()) +
-        " em: \n" +
-        addressData.address1 +
-        ", " +
-        addressData.address2 +
-        ", " +
-        addressData.postalCode +
-        " - " +
-        addressData.county +
-        ", " +
-        addressData.city +
-        " - " +
-        addressData.state +
-        ". \n Entrega: " +
-        selectedValue;
-
-      const phoneNumber = "5554999101433";
-      const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
-        message
-      )}`;
-      window.open(url, "_blank");
-
-      navigate("/confirmation", { state: { shippingMethod: selectedValue } });
-    } else {
-      notifyUserNotAccount();
-    }
-  }
-
-  return isMobile ? (
+  return (
     <>
-      <Header></Header>
+      <Header />
       <ToastContainer />
 
-      <div className="content-cart-desk">
-        <div className="checkout-content">
-          <div className="cart-title">
-            <span>SELECIONE A ENTREGA</span>
-          </div>
+      <div className="shipping-page">
+        <h1 className="shipping-title">🚚 Escolha o método de entrega</h1>
 
-          <div className="m-1">
-            {/* <div className="progress">
-              <div
-                className="progress-bar progress-bar-striped bg-warning progress-bar-animated shipping"
-                role="progressbar"
-                aria-valuenow="75"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              >
-                95%
-              </div>
-            </div> */}
+        <div className="shipping-container">
+          <div className="shipping-card">
+            <h2>Opções de entrega</h2>
 
-            <div className="alert alert-warning mt-4" role="alert">
-              Atualmente estamos em operação voltada para a cidade de Erechim -
-              RS. Para envios fora desta localidade, selecione a opção{" "}
-              <strong>"Outra localidade"</strong>.
-            </div>
+            <p className="shipping-description">
+              Atualmente atendemos principalmente <b>Erechim - RS</b>.  
+              Para outras cidades, selecione <b>"Outra localidade"</b> e finalize o pedido normalmente.
+            </p>
 
-            <div className="form-group">
-              <label for="select-shipping">Example select</label>
+            <div className="shipping-select-group">
+              <label htmlFor="select-shipping" className="shipping-label">
+                Selecione seu bairro ou localidade:
+              </label>
               <select
-                className="form-control"
                 id="select-shipping"
+                className="shipping-select"
                 onChange={handleSelectChange}
+                value={selectedValue}
               >
-                {shippingOptions.map((shipping) => (
-                  <option key={shipping.id} value={shipping.value}>
-                    {shipping.name} - {shipping.value}
+                <option value="">Selecione...</option>
+                {shippingOptions.map((option) => (
+                  <option key={option.id} value={option.value}>
+                    {option.name} — {option.value}
                   </option>
                 ))}
               </select>
             </div>
 
-            <button
-              className="btn btn-warning btn-shipping"
-              onClick={finishShippingOrder}
-            >
-              Finalizar
+            <div className="shipping-summary">
+              <h3>Resumo do pedido</h3>
+              <ul>
+                <li>
+                  <span>Itens:</span> <span>{cartItems.length}</span>
+                </li>
+                <li>
+                  <span>Valor total:</span> <span>{formatCurrency(getTotalCartPrice())}</span>
+                </li>
+                <li>
+                  <span>Entrega:</span>{" "}
+                  <span>{selectedValue || "Não selecionado"}</span>
+                </li>
+              </ul>
+            </div>
+
+            <button className="btn-primary shipping-btn" onClick={finishShippingOrder}>
+              Finalizar pedido
             </button>
           </div>
         </div>
-
-        <Footer></Footer>
       </div>
-    </>
-  ) : (
-    <>
-      <Header></Header>
-      <ToastContainer />
 
-      <div className="content-cart-desk">
-        <div className="checkout-content">
-          <div className="cart-title">
-            <span>SELECIONE A ENTREGA</span>
-          </div>
-
-          <div className="m-1">
-            <div className="progress">
-              <div
-                className="progress-bar progress-bar-striped bg-warning progress-bar-animated shipping"
-                role="progressbar"
-                aria-valuenow="75"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              >
-                95%
-              </div>
-            </div>
-
-            <div className="alert alert-warning mt-4" role="alert">
-              Atualmente estamos em operação voltada para a cidade de Erechim -
-              RS. Para envios fora desta localidade, selecione a opção{" "}
-              <strong>"Outra localidade"</strong>.
-            </div>
-
-            <div className="finish-order-content-desk">
-              <div className="form-group select-group-desk">
-                <label for="select-shipping">Example select</label>
-                <select
-                  className="form-control"
-                  id="select-shipping"
-                  onChange={handleSelectChange}
-                >
-                  {shippingOptions.map((shipping) => (
-                    <option key={shipping.id} value={shipping.value}>
-                      {shipping.name} - {shipping.value}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <button
-                className="btn btn-warning btn-shipping finish-btn-desk"
-                onClick={finishShippingOrder}
-              >
-                Finalizar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 }

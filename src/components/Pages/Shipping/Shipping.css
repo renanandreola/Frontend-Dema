@@ -1,26 +1,154 @@
-.shipping {
-  width: 95%;
-}
-
-.btn-shipping {
-  width: 100%;
-  font-weight: bold;
-}
-
-.finish-order-content-desk {
+/* ============================================
+   BASE DO LAYOUT
+============================================ */
+.shipping-page {
+  background: #f7f7f9;
+  min-height: 80vh;
+  padding: 40px 5%;
   display: flex;
   flex-direction: column;
-  width: 100%;
   align-items: center;
 }
 
-.select-group-desk {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
+.shipping-title {
+  font-size: 1.8rem;
+  color: #222;
+  font-weight: 700;
+  margin-bottom: 30px;
 }
 
-.finish-btn-desk {
+.shipping-container {
+  width: 100%;
+  max-width: 900px;
   display: flex;
-  width: 40%;
+  justify-content: center;
+}
+
+/* ============================================
+   CARD PRINCIPAL
+============================================ */
+.shipping-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  padding: 28px 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: transform 0.2s ease;
+}
+
+.shipping-card:hover {
+  transform: translateY(-2px);
+}
+
+.shipping-card h2 {
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.shipping-description {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ============================================
+   SELECTOR DE ENTREGA
+============================================ */
+.shipping-select-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.shipping-label {
+  font-weight: 600;
+  color: #333;
+}
+
+.shipping-select {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fafafa;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shipping-select:focus {
+  outline: none;
+  border-color: #ffc107;
+  box-shadow: 0 0 6px rgba(255, 193, 7, 0.3);
+}
+
+/* ============================================
+   RESUMO DO PEDIDO
+============================================ */
+.shipping-summary {
+  background: #f8f9fa;
+  border-left: 4px solid #ffc107;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.shipping-summary h3 {
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 700;
+}
+
+.shipping-summary ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.shipping-summary li {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* ============================================
+   BOTÕES
+============================================ */
+.btn-primary {
+  background: linear-gradient(90deg, #ffd83c, #f0b400);
+  color: #222;
+  font-weight: 700;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background 0.3s;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  transform: scale(1.03);
+  background: linear-gradient(90deg, #ffe364, #f6a800);
+}
+
+/* ============================================
+   RESPONSIVO
+============================================ */
+@media (max-width: 768px) {
+  .shipping-card {
+    padding: 20px;
+  }
+
+  .shipping-title {
+    font-size: 1.5rem;
+  }
+
+  .shipping-summary {
+    font-size: 0.9rem;
+  }
 }

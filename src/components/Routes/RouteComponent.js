@@ -10,10 +10,13 @@ import Shipping from "../Pages/Shipping/Shipping";
 import LoginAdmin from "../Pages/Admin/LoginAdmin/LoginAdmin";
 import HomeAdmin from "../Pages/Admin/HomeAdmin/HomeAdmin";
 import SearchResults from "../Pages/SearchResults/SearchResults";
+import CategoryPage from "../Pages/Category/CategoryPage";
+import ScrollToTop from "../layout/ScrollToTop";
 
 function RouteComponent() {
   return (
     <BrowserRouter>
+      <ScrollToTop></ScrollToTop>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product-details" element={<ProductDetails />} />
@@ -24,6 +27,7 @@ function RouteComponent() {
         <Route path="/loginAdmin" element={<LoginAdmin />} />
         <Route path="/homeAdmin" element={<HomeAdmin />} />
         <Route path="/searchResults" element={<SearchResults />} />
+        <Route path="/category/:id" element={<CategoryPage />} />
       </Routes>
     </BrowserRouter>
   );

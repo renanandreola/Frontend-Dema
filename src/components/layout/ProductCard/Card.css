@@ -1,116 +1,170 @@
-@media (max-width: 768px) {
-  .Card {
-    border-radius: 10px;
-    overflow: hidden;
-    /* border: 1px solid gray; */
-    border: 1px solid #ffc107;
-    margin: 10px;
-    display: flex;
-    width: 90%;
-    height: 160px;
-    justify-content: space-between;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
-  }
-}
-
-@media (min-width: 768px) {
-  .Card {
-    border-radius: 10px;
-    overflow: hidden;
-    /* border: 1px solid gray; */
-    border: 1px solid #ffc107;
-    margin: 10px;
-    display: flex;
-    width: 48%;
-    height: 160px;
-    justify-content: space-between;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
-  }
-}
-
-.image-product {
-  max-width: 100%;
-  object-fit: cover;
-}
-
-.card-left {
-  display: flex;
-  justify-content: center;
-  /* width: 25%; */
-  width: 40%;
-  cursor: pointer;
-}
-
-.card-right {
+.Card-modern {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  width: 27%;
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-around;
-  padding: 12px;
-  /* width: 75%; */
-  width: 60%;
-}
-
-.ancor-product-name {
-  text-align: start;
-}
-
-.product-name {
-  font-weight: bold;
-  font-size: 16px;
-  color: white;
-  text-align: start;
   cursor: pointer;
+  margin: 15px;
+  border: 1px solid #ddd;
 }
 
-.product-code {
-  font-size: 12px;
-  color: gray;
+.Card-modern:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
 }
 
-.product-price {
-  font-weight: bold;
-  color: #ffc107;
-}
-
-.product-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+/* === Imagem === */
+.Card-image-wrapper {
+  position: relative;
   width: 100%;
+  height: 200px;
+  overflow: hidden;
 }
 
-.input-qtd {
-  border: 1px solid black;
-  border-radius: 6px;
-  width: 46%;
-  height: 30px;
-  text-align: center;
+.Card-image {
+  /* width: 100%; */
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
-.add-cart-custom {
-  height: 30px;
-  padding: 0;
-  width: 35%;
-  font-weight: bold;
-  background: linear-gradient(to right, #fff3b3, #e0a800, #d39e00);
+.Card-modern:hover .Card-image {
+  transform: scale(1.08);
 }
 
-.content-controls {
+/* === Conteúdo === */
+.Card-info {
+  padding: 16px;
   display: flex;
-  width: 65%;
-}
-
-.button-qtd {
-  border: 1px solid black;
-  border-radius: 6px;
-  width: 20%;
-  height: 30px;
-  text-align: center;
-  margin: 0 2px 0 2px;
-  font-weight: bold;
-  color: black;
-  display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+}
+
+.Card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 6px;
+  text-align: center;
+  min-height: 40px;
+}
+
+.Card-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #e0a800;
+  margin-bottom: 14px;
+}
+
+/* === Controles === */
+.Card-controls {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Card-quantity {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.Card-quantity button {
+  width: 30px;
+  height: 30px;
+  background: #eee;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.Card-quantity button:hover {
+  background: #ddd;
+}
+
+.Card-quantity input {
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 0 6px;
+  font-weight: bold;
+}
+
+.Card-buy {
+  width: 100%;
+  height: 38px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #f7d76b, #f0b400);
+  font-weight: bold;
+  color: #222;
+  transition: 0.2s ease;
+}
+
+.Card-buy:hover {
+  background: linear-gradient(90deg, #ffd83c, #f5a200);
+  transform: scale(1.03);
+}
+
+/* === Responsividade === */
+
+/* Tablets médios e pequenos (2 cards por linha) */
+@media (max-width: 1024px) {
+  .Card-modern {
+    width: 42%;
+    margin: 10px;
+  }
+}
+
+/* Smartphones grandes (2 cards por linha, ajustados) */
+@media (max-width: 768px) {
+  .Card-modern {
+    width: 46%;
+    margin: 10px;
+  }
+
+  .Card-image-wrapper {
+    height: 180px;
+  }
+
+  .Card-title {
+    font-size: 0.95rem;
+  }
+
+  .Card-price {
+    font-size: 1.1rem;
+  }
+}
+
+/* Smartphones pequenos (1 card por linha) */
+@media (max-width: 480px) {
+  .Card-modern {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .Card-image-wrapper {
+    height: 160px;
+  }
+
+  .Card-title {
+    font-size: 0.9rem;
+  }
+
+  .Card-price {
+    font-size: 1rem;
+  }
+
+  .Card-buy {
+    font-size: 0.9rem;
+    height: 34px;
+  }
 }

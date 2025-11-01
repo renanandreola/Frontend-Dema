@@ -1,137 +1,190 @@
-@media (max-width: 768px) {
-  .iframe-custom {
-    border: none;
-    width: 100%;
-    height: 120vw;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
-    margin-bottom: 15px;
-    border-radius: 0.3rem;
-  }
-
-  .adjust-jumbotron {
-    width: 100%;
-  }
-
-  .finish-order-checkout {
-    width: 100%;
-    margin-bottom: 60px;
-  }
-
-  .address-data {
-    margin-top: 25px;
-    margin-bottom: 60px;
-  }
-}
-
-@media (min-width: 768px) {
-  .iframe-custom {
-    border: none;
-    width: 100%;
-    height: 25vw;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
-    margin-bottom: 15px;
-    border-radius: 0.3rem;
-  }
-
-  .adjust-jumbotron {
-    width: 40%;
-  }
-
-  .finish-order-checkout {
-    width: 40%;
-    margin-bottom: 60px;
-  }
-
-  .address-data {
-    display: flex;
-    width: 40%;
-    margin-top: 25px;
-    margin-bottom: 60px;
-  }
-}
-
-.content-finish-checkout-desk {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.content-delivery-desk {
+/* ============================================
+   LAYOUT BASE
+============================================ */
+.checkout-page {
+  background: #f7f7f9;
+  min-height: 80vh;
+  padding: 40px 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.form-delivery-desk {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
+.checkout-title {
+  font-size: 1.8rem;
+  color: #222;
+  font-weight: 700;
+  margin-bottom: 30px;
 }
 
-.card-checkout-desk {
+.checkout-container {
   width: 100%;
+  max-width: 950px;
 }
 
-.alert-custom-checkout-desk {
-  width: 40%;
+.checkout-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
+/* ============================================
+   CARD GERAL
+============================================ */
+.checkout-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px 28px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.checkout-card:hover {
+  transform: translateY(-2px);
+}
+
+.checkout-card h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.checkout-card p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* ============================================
+   OPÇÕES DE ENTREGA
+============================================ */
 .checkout-options {
   display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btn-option {
+  flex: 1;
+  min-width: 180px;
+  background: #f1f1f1;
+  border: 1px solid #ddd;
+  color: #333;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-option:hover {
+  background: #ffe28a;
+  border-color: #ffc107;
+}
+
+.btn-option.active {
+  background: linear-gradient(90deg, #ffd83c, #f0b400);
+  color: #222;
+  border: none;
+}
+
+/* ============================================
+   MAPA E RETIRADA
+============================================ */
+.map-frame {
+  border: none;
   width: 100%;
-  justify-content: center;
+  height: 260px;
+  margin: 20px 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
-.checkout-content {
-  padding-top: 75px;
-}
-
-.checkout {
-  width: 75%;
-}
-
-.title-checkout-content {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.svg-custom {
-  margin-top: 2px;
-  margin-right: 10px;
-}
-
-.shipping-method {
-  width: 80%;
-}
-
-.hr-custom {
-  border-top: 1px solid white;
-}
-
-.text-address-selected {
-  color: white;
-}
-
-.address-dema {
+.store-address {
+  font-weight: 600;
+  color: #444;
   text-decoration: underline;
-  color: white;
+  margin-bottom: 12px;
 }
 
-.text-form {
-  color: white;
+.alert-info {
+  background: #eaf6ff;
+  border-left: 4px solid #2196f3;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #1e88e5;
+  margin-bottom: 16px;
 }
 
-.verifyIdentity {
-  width: 100%;
+/* ============================================
+   FORM E ENDEREÇO
+============================================ */
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.btn-user-address {
-  width: 100%;
-  font-weight: bold;
+.checkout-form label {
+  font-weight: 600;
+  color: #333;
+}
+
+.checkout-form input {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.address-card {
+  background: #f8f9fa;
+  border-left: 4px solid #ffc107;
+  padding: 16px;
+  border-radius: 8px;
+  color: #333;
+}
+
+.address-card h3 {
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+/* ============================================
+   BOTÕES
+============================================ */
+.btn-primary {
+  background: linear-gradient(90deg, #ffd83c, #f0b400);
+  color: #222;
+  font-weight: 700;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
   cursor: pointer;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  transform: scale(1.03);
+  background: linear-gradient(90deg, #ffe364, #f6a800);
+}
+
+/* ============================================
+   RESPONSIVO
+============================================ */
+@media (max-width: 768px) {
+  .checkout-card {
+    padding: 20px;
+  }
+
+  .checkout-options {
+    flex-direction: column;
+  }
+
+  .map-frame {
+    height: 200px;
+  }
 }

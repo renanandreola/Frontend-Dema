@@ -1,5 +1,5 @@
 import "./ModalEditProduct.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -11,22 +11,33 @@ const ModalEditProduct = ({ product, closeModal }) => {
     image: product.image,
     stock: product.stock,
     hasPromotion: product.hasPromotion,
-    pricePromotion: product.pricePromotion,
+    pricePromotion: product.pricePromotion || "",
+    categories: product.categories || [],
   });
 
-  var baseURL = "";
+  const [categories, setCategories] = useState([]);
 
-  if (
+  const baseURL =
     window.location.hostname.includes("localhost") ||
     window.location.hostname === "localhost"
-  ) {
-    baseURL = "http://localhost:3000/dema/editproduct";
-  } else {
-    baseURL = "https://dema-api-d36ba11b74d8.herokuapp.com/dema/editproduct";
-  }
+      ? "http://localhost:3000/dema"
+      : "https://dema-api-d36ba11b74d8.herokuapp.com/dema";
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await axios.get(`${baseURL}/categories`);
+        if (res.data.status === 200) setCategories(res.data.categories);
+      } catch (err) {
+        console.error("Erro ao buscar categorias:", err);
+      }
+    };
+    fetchCategories();
+  }, [baseURL]);
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
+
     if (type === "file") {
       const file = files[0];
       const reader = new FileReader();
@@ -37,6 +48,9 @@ const ModalEditProduct = ({ product, closeModal }) => {
         });
       };
       reader.readAsDataURL(file);
+    } else if (name === "categories") {
+      const selected = Array.from(e.target.selectedOptions, (opt) => opt.value);
+      setForm({ ...form, categories: selected });
     } else {
       setForm({
         ...form,
@@ -45,13 +59,8 @@ const ModalEditProduct = ({ product, closeModal }) => {
     }
   };
 
-  const notifySuccessProduct = () => {
-    toast.success("Produto editado com sucesso");
-  };
-
-  const notifyErrorProduct = () => {
-    toast.error("Erro ao editar produto");
-  };
+  const notifySuccessProduct = () => toast.success("Produto editado com sucesso!");
+  const notifyErrorProduct = () => toast.error("Erro ao editar produto");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,20 +75,24 @@ const ModalEditProduct = ({ product, closeModal }) => {
         stock: Number(form.stock),
         hasPromotion: form.hasPromotion,
         pricePromotion: form.hasPromotion ? Number(form.pricePromotion) : null,
+        categories: form.categories,
       },
     };
 
-    const response = await axios.post(baseURL, finalObject);
-
-    if (response && response.data && response.data.status === 200) {
-      notifySuccessProduct();
-    } else {
+    try {
+      const response = await axios.post(`${baseURL}/editproduct`, finalObject);
+      if (response?.data?.status === 200) {
+        notifySuccessProduct();
+        setTimeout(() => {
+          window.location.pathname = "/homeAdmin";
+        }, 1200);
+      } else {
+        notifyErrorProduct();
+      }
+    } catch (err) {
+      console.error("Erro ao editar produto:", err);
       notifyErrorProduct();
     }
-
-    setTimeout(() => {
-      window.location.pathname = "/homeAdmin";
-    }, 1200);
   };
 
   return (
@@ -91,9 +104,11 @@ const ModalEditProduct = ({ product, closeModal }) => {
               &times;
             </span>
           </div>
+
           <div>
             <h4>Editar produto</h4>
           </div>
+
           <div className="content-form-modal">
             <span className="span-label-modal">Nome:</span>
             <input
@@ -107,7 +122,7 @@ const ModalEditProduct = ({ product, closeModal }) => {
           </div>
 
           <div className="content-form-modal">
-            <span className="span-label-modal">Preço:</span>
+            <span className="span-label-modal">Preço (R$):</span>
             <input
               className="input-add-products-modal"
               type="number"
@@ -115,15 +130,15 @@ const ModalEditProduct = ({ product, closeModal }) => {
               value={form.price}
               onChange={handleChange}
               required
+              min="0"
+              step="0.01"
             />
-            <span className="small">Não adicione números negativos</span>
           </div>
 
           <div className="content-form-modal">
             <span className="span-label-modal">Descrição:</span>
             <textarea
               className="textarea-custom-modal"
-              type="text"
               name="description"
               value={form.description}
               onChange={handleChange}
@@ -132,7 +147,7 @@ const ModalEditProduct = ({ product, closeModal }) => {
           </div>
 
           <div className="content-form-modal">
-            <span className="span-label-modal">Imagem:</span>
+            <span className="span-label-modal">Imagem (URL):</span>
             <input
               className="input-add-products-modal"
               type="text"
@@ -140,12 +155,12 @@ const ModalEditProduct = ({ product, closeModal }) => {
               value={form.image}
               onChange={handleChange}
               required
+              placeholder="https://exemplo.com/imagem.jpg"
             />
-            <span className="small">Adicione o link da imagem</span>
           </div>
 
           <div className="content-form-modal">
-            <span className="span-label-modal">Qtd. em estoque:</span>
+            <span className="span-label-modal">Quantidade em estoque:</span>
             <input
               className="input-add-products-modal"
               type="number"
@@ -153,8 +168,25 @@ const ModalEditProduct = ({ product, closeModal }) => {
               value={form.stock}
               onChange={handleChange}
               required
+              min="0"
             />
-            <span className="small">Não adicione números negativos</span>
+          </div>
+
+          <div className="content-form-modal">
+            <span className="span-label-modal">Categorias:</span>
+            <select
+              multiple
+              name="categories"
+              value={form.categories}
+              onChange={handleChange}
+            >
+              {categories.map((cat) => (
+                <option key={cat._id} value={cat._id}>
+                  {cat.parent ? `↳ ${cat.name} (${cat.parent.name})` : cat.name}
+                </option>
+              ))}
+            </select>
+            <small>Segure Ctrl para selecionar várias</small>
           </div>
 
           <div className="content-form-checkbox-modal">
@@ -170,7 +202,7 @@ const ModalEditProduct = ({ product, closeModal }) => {
 
           {form.hasPromotion && (
             <div className="content-form-modal">
-              <span className="span-label-modal">Preço promocional:</span>
+              <span className="span-label-modal">Preço promocional (R$):</span>
               <input
                 className="input-add-products-modal"
                 type="number"
@@ -178,8 +210,9 @@ const ModalEditProduct = ({ product, closeModal }) => {
                 value={form.pricePromotion}
                 onChange={handleChange}
                 required
+                min="0"
+                step="0.01"
               />
-              <span className="small">Não adicione números negativos</span>
             </div>
           )}
 

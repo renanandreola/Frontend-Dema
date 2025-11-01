@@ -4,6 +4,7 @@ import Header from "../../../layout/Header/Header";
 import Cookies from "js-cookie";
 import { ToastContainer } from "react-toastify";
 import AddProduct from "../AddProduct/AddProduct";
+import AddCategory from "../AddCategory/AddCategory";
 import TableProducts from "../TableProducts/TableProducts";
 import TableClients from "../TableClients/TableClients";
 
@@ -44,6 +45,12 @@ function HomeAdmin() {
         >
           Inserir Produtos
         </button>
+                <button
+          className={activeTab === "tab4" ? "active" : ""}
+          onClick={() => handleTabClick("tab4")}
+        >
+          Inserir Categorias
+        </button>
       </div>
 
       <div className="content">
@@ -52,6 +59,8 @@ function HomeAdmin() {
         {activeTab === "tab2" && <TableClients />}
 
         {activeTab === "tab3" && <AddProduct />}
+
+        {activeTab === "tab4" && <AddCategory />}
       </div>
     </>
   );

@@ -1,0 +1,25 @@
+.listing-products {
+  padding: 40px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-page {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.content-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.no-products {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #555;
+}

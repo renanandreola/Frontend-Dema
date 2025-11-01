@@ -1,155 +1,242 @@
-@media (max-width: 768px) {
-  .breadcrumb-pdp {
-    padding-top: 30px !important;
-  }
-
-  .image-product-pdp {
-    width: 100%;
-    object-fit: cover;
-  }
-
-  .image-content-pdp {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .product-info-pdp {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-    height: 150px;
-    justify-content: space-around;
-  }
-
-  .product-description-pdp {
-    display: flex;
-    padding: 10px;
-    flex-direction: column;
-  }
-
-  .title-description {
-    font-size: 14px;
-    color: white;
-    text-align: justify;
-    text-decoration: underline;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-
-  .text-description {
-    font-size: 14px;
-    color: white;
-    text-align: justify;
-  }
-
-  .product-name-pdp {
-    font-weight: bold;
-    font-size: 16px;
-    color: white;
-    text-align: start;
-    cursor: pointer;
-  }
-
-  .input-qtd-pdp {
-    border: 1px solid;
-    border-radius: 6px;
-    width: 46%;
-    height: 30px;
-    text-align: center;
-  }
-
-  .add-cart-custom-pdp {
-    height: 30px;
-    padding: 0;
-    width: 46%;
-  }
-}
-
-@media (min-width: 768px) {
-  .breadcrumb-pdp {
-    padding-top: 30px !important;
-    margin-left: 80px;
-  }
-
-  .image-product-pdp {
-    width: 75%;
-    object-fit: cover;
-  }
-
-  .image-content-pdp {
-    display: flex;
-    width: 50%;
-    justify-content: center;
-  }
-
-  .product-info-pdp {
-    display: flex;
-    width: 80%;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-    height: 190px;
-    justify-content: space-around;
-  }
-
-  .product-description-pdp {
-    display: flex;
-    padding: 10px;
-    flex-direction: column;
-    width: 80%;
-    margin-top: 40px;
-  }
-
-  .title-description {
-    font-size: 16px;
-    color: white;
-    text-align: justify;
-    text-decoration: underline;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-
-  .text-description {
-    font-size: 16px;
-    color: white;
-    text-align: justify;
-  }
-
-  .product-name-pdp {
-    font-weight: bold;
-    font-size: 22px;
-    color: white;
-    text-align: start;
-    cursor: pointer;
-    text-decoration: underline;
-  }
-
-  .input-qtd-pdp {
-    border: 1px solid;
-    border-radius: 6px;
-    width: 46%;
-    height: 40px;
-    text-align: center;
-  }
-
-  .add-cart-custom-pdp {
-    height: 40px;
-    padding: 0;
-    width: 46%;
-  }
-}
-
-.content-desk-infos {
+/* ============================================
+   LAYOUT GERAL
+============================================ */
+.pdp-page {
+  background: #f7f7f9;
+  min-height: 80vh;
   display: flex;
-  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 5%;
 }
 
-.div-product-info {
+.pdp-container {
+  display: flex;
+  flex-direction: row;
+  /* align-items: flex-start; */
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  max-width: 1100px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+}
+
+/* ============================================
+   IMAGEM
+============================================ */
+.pdp-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pdp-image {
+  max-width: 100%;
+  max-height: 480px;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.pdp-image:hover {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   INFORMAÇÕES DO PRODUTO
+============================================ */
+.pdp-info {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  width: 50%;
-  padding-top: 100px;
+  gap: 16px;
 }
+
+.pdp-breadcrumb {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.pdp-link {
+  color: #666;
+  text-decoration: none;
+}
+
+.pdp-link:hover {
+  color: #f0b400;
+}
+
+.pdp-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.pdp-code {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.pdp-price {
+  font-size: 1.8rem;
+  color: #f0b400;
+  font-weight: 700;
+}
+
+/* ============================================
+   AÇÕES (QUANTIDADE + BOTÃO)
+============================================ */
+.pdp-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.pdp-quantity {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.pdp-quantity button {
+  background: #f8f8f8;
+  border: none;
+  padding: 8px 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #333;
+  transition: background 0.2s;
+}
+
+.pdp-quantity button:hover {
+  background: #ffd83c;
+}
+
+.pdp-quantity input {
+  width: 50px;
+  text-align: center;
+  border: none;
+  font-size: 1rem;
+  padding: 6px 0;
+  outline: none;
+}
+
+/* ============================================
+   BOTÃO PRINCIPAL
+============================================ */
+.btn-primary {
+  background: linear-gradient(90deg, #ffd83c, #f0b400);
+  color: #222;
+  font-weight: 700;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background 0.3s;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: scale(1.03);
+  background: linear-gradient(90deg, #ffe364, #f6a800);
+}
+
+/* ============================================
+   DESCRIÇÃO
+============================================ */
+.pdp-description {
+  margin-top: 20px;
+}
+
+.pdp-description h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8px;
+  border-left: 4px solid #ffc107;
+  padding-left: 8px;
+}
+
+.pdp-description p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* ============================================
+   LOADING
+============================================ */
+.pdp-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+/* ============================================
+   RESPONSIVO
+============================================ */
+@media (max-width: 768px) {
+  .pdp-container {
+    flex-direction: column;
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .pdp-image {
+    width: 100%;
+    max-height: 350px;
+  }
+
+  .pdp-name {
+    font-size: 1.5rem;
+  }
+
+  .pdp-price {
+    font-size: 1.6rem;
+  }
+
+  .pdp-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+}
+
+.pdp-image-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.pdp-image {
+  /* width: 100%; */
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.swiper {
+  border-radius: 8px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #333;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ffb300;
+}
+

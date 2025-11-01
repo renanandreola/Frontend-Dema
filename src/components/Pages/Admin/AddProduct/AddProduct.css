@@ -1,46 +1,105 @@
-.card-form {
-  background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  width: 30%;
+.add-product-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px 20px;
+  background: #f4f6f8;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
 }
 
-.form-custom {
+.add-product-form {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  max-width: 550px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 22px;
+  transition: 0.3s;
+}
+
+.add-product-form:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.form-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #495057;
+  font-size: 1rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+.form-group small {
+  color: #868e96;
+  font-size: 0.85rem;
+}
+
+.checkbox-group {
+  display: flex;
   align-items: center;
 }
 
-.content-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 10px;
+.checkbox-group input {
+  margin-right: 8px;
+  transform: scale(1.2);
 }
 
-.content-form-checkbox {
-  display: flex;
-  margin-top: 10px;
-}
-
-.input-add-products {
-  display: flex;
-  width: 100%;
-  height: 40px;
+.btn-submit {
+  background: linear-gradient(135deg, #007bff, #00a8ff);
+  color: #fff;
+  padding: 12px;
+  border: none;
   border-radius: 8px;
-  border: 1px solid;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.input-add-products-checkbox {
-  margin-left: 10px;
+.btn-submit:hover {
+  background: linear-gradient(135deg, #0069d9, #0099e6);
+  transform: translateY(-2px);
 }
 
-.textarea-custom {
-  display: flex;
-  width: 100%;
-  min-height: 40px;
-  height: 80px;
-  border-radius: 8px;
-  border: 1px solid;
+/* Responsivo */
+@media (max-width: 600px) {
+  .add-product-form {
+    padding: 25px;
+  }
 }

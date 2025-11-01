@@ -8,7 +8,7 @@ function AllProducts() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    var baseURL = "";
+    let baseURL = "";
 
     if (
       window.location.hostname.includes("localhost") ||
@@ -22,7 +22,20 @@ function AllProducts() {
     async function fetchData() {
       try {
         const response = await axios.get(baseURL);
-        setData(response.data.products.reverse());
+        const products = response.data.products.reverse();
+
+        // Reordena: os produtos "snow foam" vão para o início
+        const ordered = [...products].sort((a, b) => {
+          const term = "snow foam";
+          const aHas = a.name?.toLowerCase().includes(term) || a.description?.toLowerCase().includes(term);
+          const bHas = b.name?.toLowerCase().includes(term) || b.description?.toLowerCase().includes(term);
+
+          if (aHas && !bHas) return -1; // a vem antes
+          if (!aHas && bHas) return 1;  // b vem antes
+          return 0; // mantém a ordem original entre iguais
+        });
+
+        setData(ordered);
       } catch (error) {
         console.error("Erro:", error);
       } finally {
@@ -37,7 +50,7 @@ function AllProducts() {
     return (
       <div className="listing-products loader">
         <div className="spinner-border text-warning" role="status">
-          <span className="sr-only">Carregando produtos... </span>
+          <span className="sr-only">Carregando produtos...</span>
         </div>
       </div>
     );
@@ -46,11 +59,9 @@ function AllProducts() {
   if (data && data.length > 0) {
     return (
       <div className="listing-products">
-        <span className="title-page">LINHA DE PRODUTOS DEMA AUTOMOTIVE</span>
-
         <div className="content-cards">
           {data.map((product) => (
-            <Card key={product._id} product={product}></Card>
+            <Card key={product._id} product={product} />
           ))}
         </div>
       </div>
