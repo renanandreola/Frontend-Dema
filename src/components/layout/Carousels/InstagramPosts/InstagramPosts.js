@@ -11,8 +11,8 @@ const posts = [
     link: "https://www.instagram.com/dema_automotive/reel/DQZY40FgK5F/",
   },
   {
-    image: "https://i.imgur.com/fGkqRA3.jpeg",
-    link: "https://www.instagram.com/dema_automotive/reel/DQU7Sm2D9IF/",
+    image: "https://i.imgur.com/58oq3SO.jpeg",
+    link: "https://www.instagram.com/dema_automotive/reel/DQuAZ9ZgMom/",
   },
 ];
 
