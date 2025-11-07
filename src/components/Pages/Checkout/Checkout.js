@@ -87,7 +87,7 @@ function Checkout() {
       getTotalCartPrice()
     )}`;
 
-    const phoneNumber = "555499087286";
+    const phoneNumber = "5554999101433";
     window.open(
       `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`,
       "_blank"

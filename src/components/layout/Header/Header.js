@@ -35,7 +35,7 @@ function Header() {
 
   const sendWpp = () => {
     const message = "Olá, vim pelo seu site! Gostaria de tirar algumas dúvidas!";
-    const phoneNumber = "555499087286";
+    const phoneNumber = "5554999101433";
     const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
       message
     )}`;
