@@ -37,7 +37,7 @@ function Shipping() {
       getTotalCartPrice()
     )}\nEm: ${addressData.address1}, ${addressData.address2}, ${addressData.postalCode} - ${addressData.county}, ${addressData.city} - ${addressData.state}.\nEntrega: ${selectedValue}`;
 
-    const phoneNumber = "5554999101433";
+    const phoneNumber = "555499087286";
     const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
     navigate("/confirmation", { state: { shippingMethod: selectedValue } });
