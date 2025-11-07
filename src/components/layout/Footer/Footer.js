@@ -34,7 +34,7 @@ function Footer() {
             <p>
               <i className="fab fa-whatsapp me-2 text-warning mr-1"></i>
               <a
-                href="https://wa.me/5554999101433"
+                href="https://wa.me/5554996765383"
                 target="_blank"
                 rel="noreferrer"
                 className="text-white text-decoration-none"
