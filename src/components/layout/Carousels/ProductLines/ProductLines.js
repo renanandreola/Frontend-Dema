@@ -23,7 +23,6 @@ export default function ProductLines() {
             key={index}
             href={item.link}
             className="product-card"
-            target="_blank"
             rel="noopener noreferrer"
           >
             <img src={item.image} alt={item.title} className="product-image" />
