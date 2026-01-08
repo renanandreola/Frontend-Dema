@@ -3,16 +3,16 @@ import "./InstagramPosts.css";
 
 const posts = [
   {
-    image: "https://i.imgur.com/8ly40x4.jpeg",
-    link: "https://www.instagram.com/akinasociety/p/DRKVZHaEXoS/",
+    image: "https://i.imgur.com/ZGwdliR.jpeg",
+    link: "https://www.instagram.com/dema_automotive/p/DTQFN2lDiFk/",
   },
   {
-    image: "https://i.imgur.com/te4i570.jpeg",
-    link: "https://www.instagram.com/dema_automotive/reel/DRAqmb4D286/",
+    image: "https://i.imgur.com/49NRtbl.jpeg",
+    link: "https://www.instagram.com/dema_automotive/p/DTNgjJQgLy6/",
   },
   {
-    image: "https://i.imgur.com/dcj8D1Y.jpeg",
-    link: "https://www.instagram.com/dema_automotive/reel/DQ-ErVFj4SD/",
+    image: "https://i.imgur.com/gm1JjmI.jpeg",
+    link: "https://www.instagram.com/dema_automotive/reel/DTLq1inj5hL/",
   },
 ];
 

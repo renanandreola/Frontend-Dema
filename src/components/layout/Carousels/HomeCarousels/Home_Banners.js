@@ -32,13 +32,26 @@ export default function HomeBanners() {
         <div className="banner-slide">
           <img
             className="img-banner-home"
-            src="https://i.imgur.com/CURCr99.jpeg"
+            src="https://i.imgur.com/gyaPaqL.jpeg"
             alt="Banner 1"
           />
-          <div className="banner-text">
+          {/* <div className="banner-text">
             <h2>A revolução da estética automotiva começa aqui.</h2>
             <p>Produtos desenvolvidos para quem exige o máximo do brilho.</p>
-          </div>
+          </div> */}
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div className="banner-slide">
+          <img
+            className="img-banner-home"
+            src="https://i.imgur.com/CURCr99.jpeg"
+            alt="Banner 2"
+          />
+          {/* <div className="banner-text">
+            <h2>A revolução da estética automotiva começa aqui.</h2>
+            <p>Produtos desenvolvidos para quem exige o máximo do brilho.</p>
+          </div> */}
         </div>
       </SwiperSlide>
 
