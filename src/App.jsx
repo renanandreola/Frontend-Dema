@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
-import RouteComponent from "./components/Routes/RouteComponent";
-import { CartProvider } from "./components/Contexts/CartContext";
+// import RouteComponent from "./components/Routes/RouteComponent";
+// import { CartProvider } from "./components/Contexts/CartContext";
 
 function App() {
   return (
