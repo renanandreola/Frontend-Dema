@@ -5,11 +5,12 @@ import { CartProvider } from "./components/Contexts/CartContext";
 
 function App() {
   return (
-    <CartProvider>
-      <div className="app">
-        <RouteComponent></RouteComponent>
-      </div>
-    </CartProvider>
+    // <CartProvider>
+    //   <div className="app">
+    //     <RouteComponent></RouteComponent>
+    //   </div>
+    // </CartProvider>
+    <div>Estamos em manutenção</div>
   );
 }
 
