@@ -10,7 +10,18 @@ function App() {
     //     <RouteComponent></RouteComponent>
     //   </div>
     // </CartProvider>
-    <div>Estamos em manutenção</div>
+    <div
+      style={{
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        color: "white",
+      }}
+    >
+      Estamos em manutenção
+    </div>
   );
 }
 
